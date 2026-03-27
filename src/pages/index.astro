@@ -7,7 +7,7 @@ const bio        = `I'm a creative builder and an entrepreneur. Also, curious by
 const links = [
   { label: "MAIL",      href: "mailto:mail@ahglinder.com" },
   { label: "YOUTUBE",   href: "https://youtube.com/@justgreyish" },
-  { label: "X",         href: "https://twitter.com/@" },
+  { label: "X",         href: "https://x.com/@glinderrr" },
   { label: "INSTAGRAM", href: "https://instagram.com/@glinderrrr" },
 ];
 
@@ -76,6 +76,42 @@ const projects = [
       <main class="main">
         <div class="content">
 
+          <!-- Frog easter egg (desktop only) -->
+          <div class="easter-egg" id="frogEgg">
+            <div class="frog-wrap" id="frogWrap">
+              <svg viewBox="0 0 100 95" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+                <!-- Eye bumps -->
+                <circle cx="31" cy="32" r="15" fill="#4ade80"/>
+                <circle cx="69" cy="32" r="15" fill="#4ade80"/>
+                <!-- Body -->
+                <ellipse cx="50" cy="63" rx="36" ry="28" fill="#4ade80"/>
+                <!-- Eye whites -->
+                <circle cx="31" cy="31" r="10" fill="white"/>
+                <circle cx="69" cy="31" r="10" fill="white"/>
+                <!-- Pupils -->
+                <circle cx="33" cy="32" r="6" fill="#1a1a1a"/>
+                <circle cx="71" cy="32" r="6" fill="#1a1a1a"/>
+                <!-- Eye shine -->
+                <circle cx="35" cy="29" r="2.5" fill="white"/>
+                <circle cx="73" cy="29" r="2.5" fill="white"/>
+                <!-- Nostrils -->
+                <circle cx="44" cy="56" r="2.2" fill="#22c55e"/>
+                <circle cx="56" cy="56" r="2.2" fill="#22c55e"/>
+                <!-- Smile -->
+                <path d="M 37 70 Q 50 82 63 70" stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <!-- Belly highlight -->
+                <ellipse cx="50" cy="68" rx="18" ry="12" fill="#86efac" opacity="0.45"/>
+              </svg>
+            </div>
+            <div class="hover-hint">
+              <svg viewBox="0 0 80 50" width="80" height="50" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 70 10 Q 40 5 18 35" stroke="#9ca3af" stroke-width="1.5" fill="none" stroke-dasharray="4 3" stroke-linecap="round"/>
+                <polygon points="12,40 22,32 24,44" fill="#9ca3af"/>
+              </svg>
+              <span class="hover-text">Hover me!</span>
+            </div>
+          </div>
+
           <!-- Hero -->
           <section class="hero">
             <h1 class="hero-name">
@@ -113,6 +149,33 @@ const projects = [
         </div>
       </main>
     </div>
+
+    <script is:inline>
+      // Frog mouse tracking
+      const egg  = document.getElementById('frogEgg');
+      const frog = document.getElementById('frogWrap');
+
+      frog.addEventListener('mouseenter', () => egg.classList.add('active'));
+      frog.addEventListener('mouseleave', () => {
+        egg.classList.remove('active');
+        frog.style.transform = 'translate(0px, 0px) rotate(0deg)';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!egg.classList.contains('active')) return;
+        const rect = frog.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top  + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const max  = 18;
+        const mx   = (dx / dist) * Math.min(dist * 0.35, max);
+        const my   = (dy / dist) * Math.min(dist * 0.35, max);
+        const rot  = (dx / dist) * 8;
+        frog.style.transform = `translate(${mx}px, ${my}px) rotate(${rot}deg)`;
+      });
+    </script>
 
     <script is:inline>
       const btn  = document.getElementById('themeToggle');
