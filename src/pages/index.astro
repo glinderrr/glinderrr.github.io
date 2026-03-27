@@ -89,11 +89,11 @@ const projects = [
                 <circle cx="31" cy="31" r="10" fill="white"/>
                 <circle cx="69" cy="31" r="10" fill="white"/>
                 <!-- Pupils -->
-                <circle cx="33" cy="32" r="6" fill="#1a1a1a"/>
-                <circle cx="71" cy="32" r="6" fill="#1a1a1a"/>
+                <circle id="pupilL" cx="31" cy="31" r="6" fill="#1a1a1a"/>
+                <circle id="pupilR" cx="69" cy="31" r="6" fill="#1a1a1a"/>
                 <!-- Eye shine -->
-                <circle cx="35" cy="29" r="2.5" fill="white"/>
-                <circle cx="73" cy="29" r="2.5" fill="white"/>
+                <circle id="shineL" cx="33" cy="28" r="2.5" fill="white"/>
+                <circle id="shineR" cx="71" cy="28" r="2.5" fill="white"/>
                 <!-- Nostrils -->
                 <circle cx="44" cy="56" r="2.2" fill="#22c55e"/>
                 <circle cx="56" cy="56" r="2.2" fill="#22c55e"/>
@@ -152,16 +152,56 @@ const projects = [
 
     <script is:inline>
       // Frog mouse tracking
-      const egg  = document.getElementById('frogEgg');
-      const frog = document.getElementById('frogWrap');
+      const egg    = document.getElementById('frogEgg');
+      const frog   = document.getElementById('frogWrap');
+      const svg    = frog.querySelector('svg');
+      const pupilL = document.getElementById('pupilL');
+      const pupilR = document.getElementById('pupilR');
+      const shineL = document.getElementById('shineL');
+      const shineR = document.getElementById('shineR');
+
+      // Eye centers in SVG viewBox coords
+      const eyes = [
+        { pupil: pupilL, shine: shineL, ox: 31, oy: 31 },
+        { pupil: pupilR, shine: shineR, ox: 69, oy: 31 },
+      ];
+
+      function movePupils(mouseX, mouseY) {
+        const svgRect = svg.getBoundingClientRect();
+        const scaleX  = 100 / svgRect.width;
+        const scaleY  = 95  / svgRect.height;
+        const maxMove = 3.5;
+
+        eyes.forEach(({ pupil, shine, ox, oy }) => {
+          // Eye center in screen coords
+          const ecx = svgRect.left + ox / scaleX;
+          const ecy = svgRect.top  + oy / scaleY;
+          const dx  = mouseX - ecx;
+          const dy  = mouseY - ecy;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const px  = (dx / dist) * Math.min(dist * 0.08, maxMove);
+          const py  = (dy / dist) * Math.min(dist * 0.08, maxMove);
+          pupil.setAttribute('cx', ox + px);
+          pupil.setAttribute('cy', oy + py);
+          shine.setAttribute('cx', ox + px + 2);
+          shine.setAttribute('cy', oy + py - 3);
+        });
+      }
 
       frog.addEventListener('mouseenter', () => egg.classList.add('active'));
       frog.addEventListener('mouseleave', () => {
         egg.classList.remove('active');
         frog.style.transform = 'translate(0px, 0px) rotate(0deg)';
+        eyes.forEach(({ pupil, shine, ox, oy }) => {
+          pupil.setAttribute('cx', ox);
+          pupil.setAttribute('cy', oy);
+          shine.setAttribute('cx', ox + 2);
+          shine.setAttribute('cy', oy - 3);
+        });
       });
 
       document.addEventListener('mousemove', (e) => {
+        movePupils(e.clientX, e.clientY);
         if (!egg.classList.contains('active')) return;
         const rect = frog.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
