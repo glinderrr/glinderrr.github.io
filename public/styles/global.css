@@ -130,7 +130,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (min-width: 768px) {
-  .easter-egg { display: flex; align-items: flex-end; gap: 0.25rem; }
+  .easter-egg { display: flex; align-items: flex-end; gap: 0.5rem; }
 }
 
 .frog-wrap {
