@@ -79,28 +79,44 @@ const projects = [
           <!-- Frog easter egg (desktop only) -->
           <div class="easter-egg" id="frogEgg">
             <div class="frog-wrap" id="frogWrap">
-              <svg viewBox="0 0 100 95" width="90" height="90" xmlns="http://www.w3.org/2000/svg">
+              <svg id="frogSvg" viewBox="0 0 120 118" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+                <!-- Drop shadow -->
+                <ellipse cx="60" cy="115" rx="34" ry="5" fill="#000" opacity="0.06"/>
                 <!-- Eye bumps -->
-                <circle cx="31" cy="32" r="15" fill="#4ade80"/>
-                <circle cx="69" cy="32" r="15" fill="#4ade80"/>
+                <circle cx="36" cy="46" r="22" fill="#22c55e"/>
+                <circle cx="84" cy="46" r="22" fill="#22c55e"/>
                 <!-- Body -->
-                <ellipse cx="50" cy="63" rx="36" ry="28" fill="#4ade80"/>
+                <ellipse cx="60" cy="78" rx="48" ry="38" fill="#22c55e"/>
+                <!-- Belly -->
+                <ellipse cx="60" cy="85" rx="32" ry="26" fill="#bbf7d0"/>
                 <!-- Eye whites -->
-                <circle cx="31" cy="31" r="10" fill="white"/>
-                <circle cx="69" cy="31" r="10" fill="white"/>
+                <circle cx="36" cy="44" r="15" fill="white"/>
+                <circle cx="84" cy="44" r="15" fill="white"/>
                 <!-- Pupils -->
-                <circle id="pupilL" cx="31" cy="31" r="6" fill="#1a1a1a"/>
-                <circle id="pupilR" cx="69" cy="31" r="6" fill="#1a1a1a"/>
-                <!-- Eye shine -->
-                <circle id="shineL" cx="33" cy="28" r="2.5" fill="white"/>
-                <circle id="shineR" cx="71" cy="28" r="2.5" fill="white"/>
+                <circle id="pupilL" cx="36" cy="44" r="9" fill="#111"/>
+                <circle id="pupilR" cx="84" cy="44" r="9" fill="#111"/>
+                <!-- Eye shine large -->
+                <circle id="shineL" cx="40" cy="39" r="4" fill="white"/>
+                <circle id="shineR" cx="88" cy="39" r="4" fill="white"/>
+                <!-- Eye shine small -->
+                <circle id="shine2L" cx="43" cy="42" r="1.8" fill="white" opacity="0.7"/>
+                <circle id="shine2R" cx="91" cy="42" r="1.8" fill="white" opacity="0.7"/>
+                <!-- Cheek blush -->
+                <circle cx="22" cy="76" r="9" fill="#fda4af" opacity="0.35"/>
+                <circle cx="98" cy="76" r="9" fill="#fda4af" opacity="0.35"/>
                 <!-- Nostrils -->
-                <circle cx="44" cy="56" r="2.2" fill="#22c55e"/>
-                <circle cx="56" cy="56" r="2.2" fill="#22c55e"/>
+                <ellipse cx="53" cy="68" rx="2.8" ry="2.2" fill="#16a34a"/>
+                <ellipse cx="67" cy="68" rx="2.8" ry="2.2" fill="#16a34a"/>
                 <!-- Smile -->
-                <path d="M 37 70 Q 50 82 63 70" stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                <!-- Belly highlight -->
-                <ellipse cx="50" cy="68" rx="18" ry="12" fill="#86efac" opacity="0.45"/>
+                <path d="M 43 90 Q 60 106 77 90" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- Toes left -->
+                <circle cx="18" cy="107" r="7" fill="#22c55e"/>
+                <circle cx="30" cy="112" r="7" fill="#22c55e"/>
+                <circle cx="42" cy="110" r="7" fill="#22c55e"/>
+                <!-- Toes right -->
+                <circle cx="78" cy="110" r="7" fill="#22c55e"/>
+                <circle cx="90" cy="112" r="7" fill="#22c55e"/>
+                <circle cx="102" cy="107" r="7" fill="#22c55e"/>
               </svg>
             </div>
             <div class="hover-hint">
@@ -151,69 +167,61 @@ const projects = [
     </div>
 
     <script is:inline>
-      // Frog mouse tracking
-      const egg    = document.getElementById('frogEgg');
-      const frog   = document.getElementById('frogWrap');
-      const svg    = frog.querySelector('svg');
-      const pupilL = document.getElementById('pupilL');
-      const pupilR = document.getElementById('pupilR');
-      const shineL = document.getElementById('shineL');
-      const shineR = document.getElementById('shineR');
+      // Frog — eye tracking + body follow
+      const egg  = document.getElementById('frogEgg');
+      const frog = document.getElementById('frogWrap');
+      const svg  = document.getElementById('frogSvg');
 
-      // Eye centers in SVG viewBox coords
+      // Eye data: center in SVG viewBox space, offset for shine relative to pupil
       const eyes = [
-        { pupil: pupilL, shine: shineL, ox: 31, oy: 31 },
-        { pupil: pupilR, shine: shineR, ox: 69, oy: 31 },
+        { pupil: document.getElementById('pupilL'),  shine: document.getElementById('shineL'),  shine2: document.getElementById('shine2L'),  ox: 36, oy: 44 },
+        { pupil: document.getElementById('pupilR'),  shine: document.getElementById('shineR'),  shine2: document.getElementById('shine2R'),  ox: 84, oy: 44 },
       ];
 
-      function movePupils(mouseX, mouseY) {
-        const svgRect = svg.getBoundingClientRect();
-        const scaleX  = 100 / svgRect.width;
-        const scaleY  = 95  / svgRect.height;
-        const maxMove = 3.5;
+      function screenToSVG(x, y) {
+        const pt = svg.createSVGPoint();
+        pt.x = x; pt.y = y;
+        return pt.matrixTransform(svg.getScreenCTM().inverse());
+      }
 
-        eyes.forEach(({ pupil, shine, ox, oy }) => {
-          // Eye center in screen coords
-          const ecx = svgRect.left + ox / scaleX;
-          const ecy = svgRect.top  + oy / scaleY;
-          const dx  = mouseX - ecx;
-          const dy  = mouseY - ecy;
+      function movePupils(mx, my) {
+        const sp = screenToSVG(mx, my);
+        const maxMove = 5;
+        eyes.forEach(({ pupil, shine, shine2, ox, oy }) => {
+          const dx   = sp.x - ox;
+          const dy   = sp.y - oy;
           const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const px  = (dx / dist) * Math.min(dist * 0.08, maxMove);
-          const py  = (dy / dist) * Math.min(dist * 0.08, maxMove);
+          const move = Math.min(dist * 0.25, maxMove);
+          const px   = (dx / dist) * move;
+          const py   = (dy / dist) * move;
           pupil.setAttribute('cx', ox + px);
           pupil.setAttribute('cy', oy + py);
-          shine.setAttribute('cx', ox + px + 2);
-          shine.setAttribute('cy', oy + py - 3);
+          shine.setAttribute('cx',  ox + px + 4);
+          shine.setAttribute('cy',  oy + py - 5);
+          shine2.setAttribute('cx', ox + px + 7);
+          shine2.setAttribute('cy', oy + py - 2);
         });
       }
 
       frog.addEventListener('mouseenter', () => egg.classList.add('active'));
       frog.addEventListener('mouseleave', () => {
         egg.classList.remove('active');
-        frog.style.transform = 'translate(0px, 0px) rotate(0deg)';
-        eyes.forEach(({ pupil, shine, ox, oy }) => {
-          pupil.setAttribute('cx', ox);
-          pupil.setAttribute('cy', oy);
-          shine.setAttribute('cx', ox + 2);
-          shine.setAttribute('cy', oy - 3);
-        });
+        frog.style.transform = 'translate(0px,0px) rotate(0deg)';
       });
 
       document.addEventListener('mousemove', (e) => {
         movePupils(e.clientX, e.clientY);
         if (!egg.classList.contains('active')) return;
         const rect = frog.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top  + rect.height / 2;
-        const dx = e.clientX - cx;
-        const dy = e.clientY - cy;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const max  = 18;
-        const mx   = (dx / dist) * Math.min(dist * 0.35, max);
-        const my   = (dy / dist) * Math.min(dist * 0.35, max);
+        const cx   = rect.left + rect.width  / 2;
+        const cy   = rect.top  + rect.height / 2;
+        const dx   = e.clientX - cx;
+        const dy   = e.clientY - cy;
+        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+        const mx   = (dx / dist) * Math.min(dist * 0.35, 18);
+        const my   = (dy / dist) * Math.min(dist * 0.35, 18);
         const rot  = (dx / dist) * 8;
-        frog.style.transform = `translate(${mx}px, ${my}px) rotate(${rot}deg)`;
+        frog.style.transform = `translate(${mx}px,${my}px) rotate(${rot}deg)`;
       });
     </script>
 
