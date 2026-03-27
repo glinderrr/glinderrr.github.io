@@ -1,13 +1,136 @@
 ---
-import Shell from "../components/Shell.astro";
+// Edit the content below to personalise your site
+const name       = "Your Name";
+const phonetic   = "/ˈjɔːr neɪm/";
+const bio        = `I'm a [your role] with X+ years of experience doing [what you do].
+  I'm currently working on <a href="#">Project Name</a> — [brief description].`;
+
+const links = [
+  { label: "MAIL",     href: "mailto:you@email.com" },
+  { label: "LINKEDIN", href: "https://linkedin.com/in/yourhandle" },
+  { label: "GITHUB",   href: "https://github.com/yourhandle" },
+];
+
+const navLinks = [
+  { label: "Home",  href: "/" },
+  { label: "About", href: "/about" },
+];
+
+const projects = [
+  {
+    name: "Project One",
+    href: "#",
+    badges: [{ label: "Design", style: "blue" }],
+  },
+  {
+    name: "Project Two",
+    href: "#",
+    badges: [{ label: "Design", style: "blue" }, { label: "Dev", style: "green" }],
+  },
+  {
+    name: "Project Three",
+    href: "#",
+    badges: [{ label: "Research", style: "orange" }],
+  },
+  {
+    name: "Project Four",
+    href: "#",
+    badges: [{ label: "Open Source", style: "purple" }],
+  },
+];
 ---
 
-<Shell>
-	<main>
-		<div class="h-screen flex justify-center items-center">
-			<div class="flex gap-2 items-center">
-				<div class="i-solar-ghost-smile-linear"></div>Do something great
-			</div>
-		</div>
-	</main>
-</Shell>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{name}</title>
+    <meta name="description" content={`Portfolio of ${name}`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <script is:inline>
+      // Apply theme before paint to avoid flash
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const preferred = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', preferred);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div class="layout">
+
+      <!-- ── Sidebar ── -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          {navLinks.map(l => <a href={l.href}>{l.label}</a>)}
+        </nav>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span id="themeIcon">○</span>
+        </button>
+      </aside>
+
+      <!-- ── Main ── -->
+      <main class="main">
+        <div class="content">
+
+          <!-- Hero -->
+          <section class="hero">
+            <h1 class="hero-name">
+              {name}
+              <span class="hero-phonetic">{phonetic}</span>
+            </h1>
+            <p class="hero-bio" set:html={bio} />
+            <div class="cta-group">
+              {links.map(l => (
+                <a class="cta-btn" href={l.href} target={l.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer">
+                  {l.label} ↗
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <!-- Work -->
+          <section>
+            <p class="section-label">Work</p>
+            <div class="project-list">
+              {projects.map(p => (
+                <a class="project-row" href={p.href} target="_blank" rel="noopener noreferrer">
+                  <span class="project-name">{p.name}</span>
+                  <hr class="project-divider" />
+                  <div class="badge-group">
+                    {p.badges.map(b => (
+                      <span class={`badge badge-${b.style}`}>{b.label}</span>
+                    ))}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+
+    <script is:inline>
+      const btn  = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        icon.textContent = theme === 'dark' ? '●' : '○';
+      }
+
+      // Sync icon on load
+      applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    </script>
+  </body>
+</html>

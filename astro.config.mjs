@@ -1,16 +1,5 @@
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import { defineConfig } from "astro/config";
-import UnoCSS from "unocss/astro";
+import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
 export default defineConfig({
-	site: "https://example.com",
-	integrations: [
-		mdx(),
-		UnoCSS({
-			injectReset: true,
-		}),
-		sitemap(),
-	],
+  site: 'https://glinderr.github.io',
 });
