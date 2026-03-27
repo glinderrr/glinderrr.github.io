@@ -166,6 +166,14 @@ const projects = [
       </main>
     </div>
 
+    <!-- Tongue overlay (full-screen, pointer-events: none) -->
+    <div id="tongueOverlay" style="position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden;">
+      <svg id="tongueSvg" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <path id="tonguePath" fill="none" stroke="#fb7185" stroke-linecap="round"/>
+        <circle id="tongueTip" cx="0" cy="0" r="0" fill="#fb7185"/>
+      </svg>
+    </div>
+
     <script is:inline>
       // Frog — eye tracking + body follow
       const egg  = document.getElementById('frogEgg');
@@ -242,6 +250,84 @@ const projects = [
         const current = document.documentElement.getAttribute('data-theme');
         applyTheme(current === 'dark' ? 'light' : 'dark');
       });
+    </script>
+
+    <script is:inline>
+      // Tongue animation
+      (function () {
+        const tonguePath = document.getElementById('tonguePath');
+        const tongueTip  = document.getElementById('tongueTip');
+        let animating = false;
+
+        function svgToScreen(svgEl, x, y) {
+          const pt = svgEl.createSVGPoint();
+          pt.x = x; pt.y = y;
+          return pt.matrixTransform(svgEl.getScreenCTM());
+        }
+
+        function animateTongue(sx, sy, tx, ty) {
+          if (animating) return;
+          animating = true;
+
+          const EXTEND  = 160;
+          const HOLD    = 90;
+          const RETRACT = 200;
+          const TOTAL   = EXTEND + HOLD + RETRACT;
+          const t0 = performance.now();
+
+          // Perpendicular curve offset so tongue arcs naturally
+          const len   = Math.sqrt((tx-sx)**2 + (ty-sy)**2) || 1;
+          const perpX = -(ty-sy) / len;
+          const perpY =  (tx-sx) / len;
+          const arc   = Math.min(len * 0.18, 40);
+
+          function easeOut(t) { return 1 - (1-t)**3; }
+          function easeIn(t)  { return t**3; }
+
+          function frame(now) {
+            const elapsed = now - t0;
+            let p;
+
+            if (elapsed < EXTEND) {
+              p = easeOut(elapsed / EXTEND);
+            } else if (elapsed < EXTEND + HOLD) {
+              p = 1;
+            } else {
+              p = 1 - easeIn(Math.min((elapsed - EXTEND - HOLD) / RETRACT, 1));
+            }
+
+            const ex  = sx + (tx - sx) * p;
+            const ey  = sy + (ty - sy) * p;
+            const cpx = (sx + ex) / 2 + perpX * arc * Math.sin(p * Math.PI);
+            const cpy = (sy + ey) / 2 + perpY * arc * Math.sin(p * Math.PI);
+
+            tonguePath.setAttribute('d', `M ${sx} ${sy} Q ${cpx} ${cpy} ${ex} ${ey}`);
+            tonguePath.setAttribute('stroke-width', 3 + p * 4);
+            tongueTip.setAttribute('cx', ex);
+            tongueTip.setAttribute('cy', ey);
+            tongueTip.setAttribute('r',  p * 8);
+
+            if (elapsed < TOTAL) {
+              requestAnimationFrame(frame);
+            } else {
+              tonguePath.setAttribute('d', '');
+              tongueTip.setAttribute('r', 0);
+              animating = false;
+            }
+          }
+
+          requestAnimationFrame(frame);
+        }
+
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('a, button')) return;
+          const frogSvg = document.getElementById('frogSvg');
+          if (!frogSvg) return;
+          // Mouth center is ~(60, 98) in SVG viewBox
+          const mouth = svgToScreen(frogSvg, 60, 98);
+          animateTongue(mouth.x, mouth.y, e.clientX, e.clientY);
+        });
+      })();
     </script>
   </body>
 </html>
