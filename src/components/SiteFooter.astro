@@ -1,0 +1,30 @@
+<footer class="global-site-footer" role="contentinfo">
+  <div class="global-site-footer__inner">
+    &copy; 2026 a.h glinder. All rights reserved.
+  </div>
+</footer>
+
+<style>
+  .global-site-footer {
+    width: 100%;
+    margin-top: clamp(2.75rem, 6vw, 4.5rem);
+  }
+
+  .global-site-footer__inner {
+    width: min(100%, 1100px);
+    margin: 0 auto;
+    padding: 1rem 1.25rem 2rem;
+    border-top: 1px solid var(--footer-border, var(--border, rgba(15, 23, 42, 0.12)));
+    color: var(--footer-muted, var(--muted, rgba(15, 23, 42, 0.68)));
+    font-family: inherit;
+    font-size: 0.84rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 768px) {
+    .global-site-footer__inner {
+      padding: 1.1rem clamp(2rem, 5vw, 4.5rem) 2.4rem;
+    }
+  }
+</style>

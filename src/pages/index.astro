@@ -1,4 +1,7 @@
 ---
+import PandaEyeOverlay from "../components/PandaEyeOverlay.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
 const name = "Glinder";
 const phonetic = "/ˈglɪn.də/";
 const bio =
@@ -116,7 +119,7 @@ const featureCards = [
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
 
@@ -132,13 +135,17 @@ const featureCards = [
         <div class="content">
           <div class="easter-egg" id="robotEgg">
             <div class="robot-wrap" id="robotWrap">
-              <img
-                src="/images/featured/panda-hero.png"
-                alt="A seated panda illustration"
-                width="132"
-                height="132"
-                loading="eager"
-              />
+              <div class="robot-figure">
+                <img
+                  class="robot-base"
+                  src="/images/featured/panda.png"
+                  alt="A seated panda illustration"
+                  width="1024"
+                  height="1024"
+                  loading="eager"
+                />
+                <PandaEyeOverlay />
+              </div>
             </div>
           </div>
 
@@ -246,34 +253,181 @@ const featureCards = [
               </div>
             </div>
           </section>
+
         </div>
       </main>
+
+      <SiteFooter />
     </div>
 
     <script is:inline>
       const egg = document.getElementById("robotEgg");
       const robot = document.getElementById("robotWrap");
+      const pupils = Array.from(document.querySelectorAll("[data-pupil]"));
+      const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-      robot.addEventListener("mouseenter", () => egg.classList.add("active"));
-      robot.addEventListener("mouseleave", () => {
-        egg.classList.remove("active");
-        robot.style.transform = "translate(0px, 0px) rotate(0deg)";
-      });
+      if (egg && robot && pupils.length > 0) {
+        const pointer = {
+          x: 0,
+          y: 0,
+          active: false,
+        };
 
-      document.addEventListener("mousemove", (event) => {
-        if (!egg.classList.contains("active")) return;
+        const state = {
+          pupilX: 0,
+          pupilY: 0,
+          targetPupilX: 0,
+          targetPupilY: 0,
+          robotX: 0,
+          robotY: 0,
+          robotRot: 0,
+          targetRobotX: 0,
+          targetRobotY: 0,
+          targetRobotRot: 0,
+          frame: 0,
+        };
 
-        const rect = robot.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = event.clientX - cx;
-        const dy = event.clientY - cy;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const mx = (dx / dist) * Math.min(dist * 0.2, 12);
-        const my = (dy / dist) * Math.min(dist * 0.2, 12);
-        const rot = (dx / dist) * 5;
-        robot.style.transform = `translate(${mx}px, ${my}px) rotate(${rot}deg)`;
-      });
+        function setPupilTransform(x, y) {
+          pupils.forEach((pupil) => {
+            const isRightEye = pupil.dataset.pupil === "right";
+            const offsetX = isRightEye ? x * 0.72 : x;
+            const offsetY = isRightEye ? y * 0.88 : y;
+            pupil.setAttribute(
+              "transform",
+              `translate(${offsetX.toFixed(2)} ${offsetY.toFixed(2)})`
+            );
+          });
+        }
+
+        function setRobotTransform(x, y, rot) {
+          robot.style.transform =
+            `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+        }
+
+        function ease(current, target, amount) {
+          return current + (target - current) * amount;
+        }
+
+        function resetRobotTarget() {
+          state.targetRobotX = 0;
+          state.targetRobotY = 0;
+          state.targetRobotRot = 0;
+        }
+
+        function resetAllTargets() {
+          state.targetPupilX = 0;
+          state.targetPupilY = 0;
+          resetRobotTarget();
+        }
+
+        function updateTargets() {
+          if (!pointer.active) {
+            resetAllTargets();
+            return;
+          }
+
+          const rect = robot.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = pointer.x - cx;
+          const dy = pointer.y - cy;
+          const dist = Math.hypot(dx, dy) || 1;
+
+          const pupilReach = Math.min(dist * 0.06, 7.5);
+          state.targetPupilX = (dx / dist) * pupilReach;
+          state.targetPupilY = (dy / dist) * pupilReach;
+
+          if (!egg.classList.contains("active")) {
+            resetRobotTarget();
+            return;
+          }
+
+          const bodyReach = Math.min(dist * 0.12, 7);
+          state.targetRobotX = (dx / dist) * bodyReach;
+          state.targetRobotY = (dy / dist) * bodyReach;
+          state.targetRobotRot = (dx / dist) * 2.75;
+        }
+
+        function animate() {
+          state.frame = 0;
+          updateTargets();
+
+          state.pupilX = ease(state.pupilX, state.targetPupilX, 0.24);
+          state.pupilY = ease(state.pupilY, state.targetPupilY, 0.24);
+          state.robotX = ease(state.robotX, state.targetRobotX, 0.16);
+          state.robotY = ease(state.robotY, state.targetRobotY, 0.16);
+          state.robotRot = ease(state.robotRot, state.targetRobotRot, 0.16);
+
+          setPupilTransform(state.pupilX, state.pupilY);
+          setRobotTransform(state.robotX, state.robotY, state.robotRot);
+
+          const pupilSettled =
+            Math.abs(state.pupilX - state.targetPupilX) < 0.01 &&
+            Math.abs(state.pupilY - state.targetPupilY) < 0.01;
+          const robotSettled =
+            Math.abs(state.robotX - state.targetRobotX) < 0.01 &&
+            Math.abs(state.robotY - state.targetRobotY) < 0.01 &&
+            Math.abs(state.robotRot - state.targetRobotRot) < 0.01;
+
+          if (pupilSettled && robotSettled) {
+            state.pupilX = state.targetPupilX;
+            state.pupilY = state.targetPupilY;
+            state.robotX = state.targetRobotX;
+            state.robotY = state.targetRobotY;
+            state.robotRot = state.targetRobotRot;
+
+            setPupilTransform(state.pupilX, state.pupilY);
+            setRobotTransform(state.robotX, state.robotY, state.robotRot);
+            return;
+          }
+
+          state.frame = window.requestAnimationFrame(animate);
+        }
+
+        function ensureAnimation() {
+          if (state.frame) return;
+          state.frame = window.requestAnimationFrame(animate);
+        }
+
+        robot.addEventListener("pointerenter", () => {
+          egg.classList.add("active");
+          ensureAnimation();
+        });
+
+        robot.addEventListener("pointerleave", () => {
+          egg.classList.remove("active");
+          resetRobotTarget();
+          ensureAnimation();
+        });
+
+        document.addEventListener(
+          "pointermove",
+          (event) => {
+            if (!canHover.matches || event.pointerType === "touch") return;
+
+            pointer.x = event.clientX;
+            pointer.y = event.clientY;
+            pointer.active = true;
+            ensureAnimation();
+          },
+          { passive: true }
+        );
+
+        window.addEventListener("blur", () => {
+          egg.classList.remove("active");
+          pointer.active = false;
+          resetAllTargets();
+          ensureAnimation();
+        });
+
+        canHover.addEventListener("change", () => {
+          if (canHover.matches) return;
+          egg.classList.remove("active");
+          pointer.active = false;
+          resetAllTargets();
+          ensureAnimation();
+        });
+      }
     </script>
 
   </body>

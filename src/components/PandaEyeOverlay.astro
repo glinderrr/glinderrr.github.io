@@ -1,0 +1,33 @@
+<svg
+  class="panda-eye-layer"
+  viewBox="0 0 1024 1024"
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <clipPath id="panda-left-eye-clip">
+      <ellipse cx="396" cy="344" rx="36" ry="31" transform="rotate(-18 396 344)" />
+    </clipPath>
+
+    <clipPath id="panda-right-eye-clip">
+      <ellipse cx="542" cy="342" rx="37" ry="31" transform="rotate(18 542 342)" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#panda-left-eye-clip)">
+    <g class="panda-pupil" data-pupil="left">
+      <circle cx="407" cy="339" r="15.5" fill="#151012" />
+      <circle cx="407" cy="339" r="7.2" fill="#090708" />
+      <circle cx="401" cy="333" r="3.8" fill="#fffefc" opacity="0.96" />
+    </g>
+  </g>
+
+  <g clip-path="url(#panda-right-eye-clip)">
+    <g class="panda-pupil" data-pupil="right">
+      <circle cx="541" cy="346" r="14.1" fill="#151012" />
+      <circle cx="541" cy="346" r="6.6" fill="#090708" />
+      <circle cx="535.2" cy="340.1" r="3.5" fill="#fffefc" opacity="0.96" />
+    </g>
+  </g>
+</svg>

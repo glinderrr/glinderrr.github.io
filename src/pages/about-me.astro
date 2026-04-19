@@ -1,4 +1,6 @@
 ---
+import SiteFooter from "../components/SiteFooter.astro";
+
 const aboutParagraphs = [
   "I'm a creative builder based in Ghana. I co-own Casestody and Greysole, and I spend a lot of time thinking about how things look, feel, and function.",
   "I'm really big on aesthetics, comfortable clothing and spaces. Sometimes that looks like just following an idea until it becomes real. I'm a youtuber sometimes.",
@@ -88,7 +90,7 @@ const tunes = [
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <style>
       :root {
         --bg: #f7f7f4;
@@ -683,6 +685,8 @@ const tunes = [
         </div>
       </section>
     </main>
+
+    <SiteFooter />
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {

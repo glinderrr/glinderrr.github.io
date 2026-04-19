@@ -1,4 +1,6 @@
 ---
+import SiteFooter from "../components/SiteFooter.astro";
+
 const signImages = [
   { src: "/images/featured/IMG_2353.jpeg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/IMG_3883-scaled.jpg", alt: "Greywiththesign gallery image." },
@@ -33,7 +35,7 @@ const signImages = [
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/styles/global.css" />
     <style>
       :root {
@@ -288,5 +290,7 @@ const signImages = [
         </article>
       </div>
     </main>
+
+    <SiteFooter />
   </body>
 </html>
