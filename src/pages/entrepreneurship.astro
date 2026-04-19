@@ -1,0 +1,537 @@
+---
+const noteUpdated = "";
+
+const sidebarNotes = [
+  {
+    group: "Pinned",
+    icon: "⚑",
+    title: "entrepreneurship",
+    date: "12/03/2025",
+    preview:
+      "Lessons from building Greysole and Casestody: starting before you feel ready, staying consistent, and adapting fast.",
+    href: "/entrepreneurship/",
+    active: true,
+  },
+  {
+    group: "Today",
+    icon: "✈️",
+    title: "travel journal",
+    date: "3/13/2024",
+    preview:
+      "A week between Addis Ababa and Dubai, filled with kind strangers, malls, deserts, and reflection.",
+    href: "/travel-journal/",
+    active: false,
+  },
+  {
+    group: "Archive",
+    icon: "✎",
+    title: "petty beginnings",
+    date: "1/11/2026",
+    preview:
+      "Personal writing about relationships, small beginnings, and the emotions underneath them.",
+    href: "/petty-beginnings/",
+    active: false,
+  },
+  {
+    group: "Home",
+    icon: "⌂",
+    title: "back home",
+    date: "4/17/2026",
+    preview: "Return to the main site and browse projects, work, and the rest of the writing archive.",
+    href: "/",
+    active: false,
+  },
+];
+
+const lessons = [
+  {
+    title: "1. Just start",
+    paragraphs: [
+      "This might seem very obvious, but if you’re anything like me, you would do everything but start the business. You’ll probably be stuck researching, finding your target market, and whatnot. Don’t get me wrong, planning is an essential part of starting a business, but at some point, you would have to start. Starting builds momentum, reveals hidden opportunities, and teaches lessons that planning alone never can. Your first step doesn’t need to be big—just deliberate.",
+    ],
+  },
+  {
+    title: "2. Stay consistent",
+    paragraphs: [
+      "I’m big on consistency. Progress isn’t always quick, but showing up daily moves you closer to your goal. An example of consistency is in the early days of my business partner, and I’s journey, we would continuously post items we had in stock on our socials, so much so that even though people weren’t patronizing as much as we’d hoped, we were planting seeds at the back of their heads that said: “if you ever need to get a pair of socks or a phone case, you know who to go to.” Fast forward, tell me why people actually started texting us for these very same things when they either needed to complete a fit or had just changed their phone.",
+    ],
+  },
+  {
+    title: "3. Surround yourself with like-minded people",
+    paragraphs: [
+      "Quite frankly, entrepreneurship is not an easy path, and even though I’d like to think I have it figured out/ I’m figuring it out, every once in a while, a placard saying ‘sike!’ jumps out at me. However, I’ve found that being surrounded by entrepreneurial friends makes a huge difference. When an unforeseen challenge arises, talking it through with them almost always gets me the answers I need since they would have probably already encountered the same thing or just have ideas about how to go about it.",
+    ],
+  },
+  {
+    title: "4. Entrepreneurship is not linear",
+    paragraphs: [
+      "Learn to adapt. Challenges are inevitable, but being flexible and open to change is key to overcoming them. About a year ago, our main marketing strategy was creating ad campaigns all over social media to gain traction and engagement. Ngl, this was a very effective method, but it definitely came at a cost, and initially, the cost wasn’t a problem. But if you’re reading this from Ghana, you’ll understand me when I say EXCHANGE RATE! Like ei! The exchange rate was rapidly going up within short periods, and to make matters worse, the government imposed tax on meta(Facebook, Instagram, WhatsApp), who in turn had to tax us. Marketing expenses quickly exceeded our budget. To adapt, we shifted focus to platforms like TikTok, where people naturally spend time. By creating engaging content featuring our products, we’ve reached audiences organically—proving that sometimes, a pivot leads to better results.",
+      "All this is to say that entrepreneurship is a journey filled with challenges, learning, and growth. Every step matters, from taking the leap and starting, staying consistent, surrounding yourself with the right people, and adapting to unexpected changes. Building Greysole and Casestody has taught me that progress is rarely linear, but persistence and flexibility are key to moving forward. Keep going and stay curious!",
+    ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrepreneurship | Glinder</title>
+    <meta
+      name="description"
+      content="A Notes-style version of Glinder's entrepreneurship reflections from building Greysole and Casestody."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <style>
+      :root {
+        --journal-window: rgba(255, 255, 255, 0.84);
+        --journal-sidebar: rgba(243, 243, 247, 0.92);
+        --journal-pane: rgba(255, 255, 255, 0.88);
+        --journal-divider: rgba(15, 23, 42, 0.08);
+        --journal-search: #e8e8ed;
+        --journal-preview: #6e6e73;
+        --journal-selected: #f4c542;
+        --journal-selected-text: #1c1c1e;
+        --journal-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --journal-window: rgba(49, 49, 49, 0.96);
+          --journal-sidebar: rgba(54, 54, 54, 0.96);
+          --journal-pane: rgba(50, 50, 50, 0.98);
+          --journal-divider: rgba(232, 216, 201, 0.1);
+          --journal-search: #404040;
+          --journal-preview: rgba(232, 216, 201, 0.64);
+          --journal-selected: #9b7c23;
+          --journal-selected-text: #fff8ea;
+          --journal-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      body {
+        min-height: 100vh;
+      }
+
+      .journal-page {
+        min-height: 100vh;
+        padding: clamp(1rem, 2vw, 2rem);
+      }
+
+      .journal-shell {
+        display: grid;
+        grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+        min-height: calc(100vh - clamp(2rem, 4vw, 4rem));
+        border: 1px solid var(--journal-divider);
+        border-radius: 30px;
+        overflow: hidden;
+        background: var(--journal-window);
+        box-shadow: var(--journal-shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .journal-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.35rem 1rem 1.25rem;
+        background: var(--journal-sidebar);
+        border-right: 1px solid var(--journal-divider);
+      }
+
+      .journal-chrome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0 0.25rem;
+      }
+
+      .journal-traffic {
+        display: flex;
+        gap: 0.65rem;
+      }
+
+      .journal-traffic a,
+      .journal-traffic span {
+        display: block;
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 999px;
+      }
+
+      .journal-traffic a {
+        background: #ff5f57;
+      }
+
+      .journal-traffic span:nth-child(2) { background: #febc2e; }
+      .journal-traffic span:nth-child(3) { background: #28c840; }
+
+      .journal-compose {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.55rem;
+        height: 2.55rem;
+        border: 1px solid var(--journal-divider);
+        border-radius: 14px;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      .journal-search {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        min-height: 3.15rem;
+        padding: 0 1rem;
+        border-radius: 16px;
+        background: var(--journal-search);
+        color: var(--journal-preview);
+        font-size: 1.02rem;
+      }
+
+      .journal-search span:first-child {
+        font-size: 1.28rem;
+        line-height: 1;
+      }
+
+      .journal-groups {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .journal-group {
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .journal-group-title {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .journal-note {
+        display: grid;
+        gap: 0.3rem;
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        color: inherit;
+        background: transparent;
+        border: 1px solid transparent;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+
+      .journal-note:hover,
+      .journal-note:focus-visible {
+        background: color-mix(in srgb, var(--journal-search) 78%, transparent);
+      }
+
+      .journal-note-active {
+        background: var(--journal-selected);
+        color: var(--journal-selected-text);
+      }
+
+      .journal-note-active .journal-note-date,
+      .journal-note-active .journal-note-preview {
+        color: color-mix(in srgb, var(--journal-selected-text) 78%, transparent);
+      }
+
+      .journal-note-top {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.98rem;
+        font-weight: 600;
+      }
+
+      .journal-note-title {
+        font-size: 0.98rem;
+        font-weight: 600;
+        text-transform: lowercase;
+      }
+
+      .journal-note-date {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .journal-note-preview {
+        color: var(--journal-preview);
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+
+      .journal-reader {
+        padding: clamp(1.5rem, 3vw, 3rem);
+        background: var(--journal-pane);
+      }
+
+      .journal-mobile-close {
+        display: none;
+      }
+
+      .journal-reader-inner {
+        width: min(100%, 860px);
+        margin: 0 auto;
+      }
+
+      .journal-reader-date {
+        margin-bottom: 1.5rem;
+        color: var(--muted);
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .journal-title {
+        margin-bottom: 1.35rem;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+        text-transform: lowercase;
+      }
+
+      .journal-summary {
+        margin-bottom: 2.25rem;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+      }
+
+      .journal-highlight {
+        margin-bottom: 2rem;
+        padding: 1.25rem 1.3rem;
+        border: 1px solid var(--journal-divider);
+        border-radius: 22px;
+        background: color-mix(in srgb, var(--journal-search) 78%, transparent);
+      }
+
+      .journal-highlight-label {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .journal-highlight-text {
+        margin-top: 0.6rem;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .journal-section {
+        padding: 1.45rem 0;
+        border-top: 1px solid var(--journal-divider);
+      }
+
+      .journal-section:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .journal-section-title {
+        font-size: clamp(1.45rem, 2.3vw, 2rem);
+        line-height: 1.08;
+      }
+
+      .journal-section-copy {
+        display: grid;
+        gap: 0.95rem;
+        margin-top: 1rem;
+      }
+
+      .journal-section-copy p {
+        color: var(--fg);
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .journal-inline-image {
+        width: min(100%, 620px);
+        margin: 0.35rem auto 1.2rem;
+      }
+
+      .journal-inline-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 24px;
+      }
+
+      .journal-footer {
+        margin-top: 2rem;
+        padding-top: 1.35rem;
+        border-top: 1px solid var(--journal-divider);
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .journal-footer a {
+        color: var(--accent);
+      }
+
+      @media (max-width: 980px) {
+        .journal-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .journal-sidebar {
+          border-right: 0;
+          border-bottom: 1px solid var(--journal-divider);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .journal-page {
+          padding: 0;
+        }
+
+        .journal-shell {
+          display: block;
+          min-height: 100vh;
+          border-radius: 0;
+          border: 0;
+          box-shadow: none;
+        }
+
+        .journal-reader {
+          min-height: 100vh;
+          padding: 1rem 1rem 2rem;
+        }
+
+        .journal-sidebar {
+          display: none;
+        }
+
+        .journal-mobile-close {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 2.6rem;
+          height: 2.6rem;
+          margin-bottom: 1rem;
+          border: 1px solid var(--journal-divider);
+          border-radius: 999px;
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+
+        .journal-reader-date {
+          text-align: left;
+          margin-bottom: 1rem;
+        }
+
+        .journal-title {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="journal-page">
+      <div class="journal-shell">
+        <aside class="journal-sidebar" aria-label="Notes navigation">
+          <div class="journal-chrome">
+            <div class="journal-traffic">
+              <a href="/" aria-label="Close and go home"></a>
+              <span></span>
+              <span></span>
+            </div>
+
+            <span class="journal-compose" aria-hidden="true">✎</span>
+          </div>
+
+          <div class="journal-search" aria-hidden="true">
+            <span>⌕</span>
+            <span>Search</span>
+          </div>
+
+          <div class="journal-groups">
+            {Array.from(new Set(sidebarNotes.map((note) => note.group))).map((group) => (
+              <section class="journal-group">
+                <h2 class="journal-group-title">{group}</h2>
+
+                {sidebarNotes
+                  .filter((note) => note.group === group)
+                  .map((note) => (
+                    <a
+                      class={`journal-note ${note.active ? "journal-note-active" : ""}`}
+                      href={note.href}
+                      target={note.href.startsWith("http") ? "_blank" : undefined}
+                      rel={note.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      <div class="journal-note-top">
+                        <span aria-hidden="true">{note.icon}</span>
+                        <span class="journal-note-title">{note.title}</span>
+                      </div>
+                      <span class="journal-note-date">{note.date}</span>
+                      <p class="journal-note-preview">{note.preview}</p>
+                    </a>
+                  ))}
+              </section>
+            ))}
+          </div>
+        </aside>
+
+        <article class="journal-reader">
+          <div class="journal-reader-inner">
+            <a class="journal-mobile-close" href="/" aria-label="Close and go home">✕</a>
+            <p class="journal-reader-date">{noteUpdated}</p>
+            <h1 class="journal-title">entrepreneurship</h1>
+            <p class="journal-summary">
+              
+            </p>
+
+            <section class="journal-highlight">
+              <p class="journal-highlight-label">Core thought</p>
+              <p class="journal-highlight-text">
+                My two cents on entrepreneurship for aspiring business owners, shaped by what building
+              Greysole and Casestody has taught me about momentum, discipline, community, and change.
+              </p>
+            </section>
+
+            {lessons.map((lesson) => (
+              <>
+                {lesson.title === "4. Entrepreneurship is not linear" && (
+                  <figure class="journal-inline-image">
+                    <img
+                      src="/images/featured/entrepreneurship.jpg"
+                      alt="Entrepreneurship illustration"
+                      loading="lazy"
+                    />
+                  </figure>
+                )}
+
+                <section class="journal-section">
+                  <h2 class="journal-section-title">{lesson.title}</h2>
+
+                  <div class="journal-section-copy">
+                    {lesson.paragraphs.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
+                  </div>
+                </section>
+              </>
+            ))}
+
+            <footer class="journal-footer">
+  
+            </footer>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

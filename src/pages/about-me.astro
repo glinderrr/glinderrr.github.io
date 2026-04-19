@@ -1,0 +1,771 @@
+---
+const aboutParagraphs = [
+  "I'm a creative builder based in Ghana. I co-own Casestody and Greysole, and I spend a lot of time thinking about how things look, feel, and function.",
+  "I'm really big on aesthetics, comfortable clothing and spaces. Sometimes that looks like just following an idea until it becomes real. I'm a youtuber sometimes.",
+  "Outside of work, I'm into books, weird music, fast cars & bikes, Fortnite, and figuring out how to romanticize my life a little more.",
+];
+
+const interests = [
+  "Entrepreneurship",
+  "Design",
+  "Web",
+  "Content",
+  "Books",
+  "Comfort",
+  "Aesthetics",
+  "YouTube",
+  "Fortnite",
+  "Fast Cars",
+  "Kanye West",
+];
+
+const tunes = [
+  {
+    title: "The Life of Pablo",
+    artist: "Kanye West",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ec/fd/e0/ecfde04e-6db2-e55e-41fe-83c87a52b16e/00602547908339.rgb.jpg/600x600bb.jpg",
+    label: "TLOP",
+  },
+  {
+    title: "Blonde",
+    artist: "Frank Ocean",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/45/68/bb4568f3-68cd-619d-fbcb-4e179916545d/BlondCover-Final.jpg/600x600bb.jpg",
+    label: "BLND",
+  },
+  {
+    title: "Some Nights",
+    artist: "Fun.",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/43/99/62/43996219-f524-b168-461e-233d3005a4a6/075679954497.jpg/600x600bb.jpg",
+    label: "SN",
+  },
+  {
+    title: "LABRINTH, SIA & DIPLO PRESENT... LSD",
+    artist: "LSD",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f5/07/bd/f507bda5-d4d9-814b-876e-8d06ed54b523/886447603130.jpg/600x600bb.jpg",
+    label: "LSD",
+  },
+  {
+    title: "Lungu Boy",
+    artist: "Asake",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/34/59/383459da-ba6a-4bee-67df-7de269764383/197342707992_cover.jpg/600x600bb.jpg",
+    label: "LB",
+  },
+  {
+    title: "You'll Be Alright, Kid",
+    artist: "Alex Warren",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/1e/c9/c71ec9f8-f6fd-5374-0e5c-3419539618f4/075679607942.jpg/600x600bb.jpg",
+    label: "YBAK",
+  },
+  {
+    title: "Collection One",
+    artist: "SAINt JHN",
+    coverSrc:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1c/b0/bf/1cb0bfb7-df8d-110d-90b3-88ad40484c3a/22CRGIM34072.rgb.jpg/600x600bb.jpg",
+    label: "C1",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me | Glinder</title>
+    <meta
+      name="description"
+      content="A more personal page about Glinder, with a portrait, manifesto, interests, and a tunes section."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        --bg: #f7f7f4;
+        --surface: rgba(255, 255, 255, 0.72);
+        --surface-strong: #ffffff;
+        --text: #191919;
+        --muted: #707070;
+        --border: rgba(17, 17, 17, 0.08);
+        --border-strong: rgba(17, 17, 17, 0.12);
+        --shadow: 0 18px 40px rgba(18, 18, 18, 0.08);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #323232;
+          --surface: rgba(255, 255, 255, 0.04);
+          --surface-strong: rgba(255, 255, 255, 0.04);
+          --text: #e8d8c9;
+          --muted: rgba(232, 216, 201, 0.74);
+          --border: rgba(232, 216, 201, 0.1);
+          --border-strong: rgba(232, 216, 201, 0.16);
+          --shadow: 0 22px 44px rgba(0, 0, 0, 0.22);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(100%, 860px);
+        margin: 0 auto;
+        padding: 2rem 1.1rem 4rem;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--text);
+      }
+
+      .section {
+        margin-bottom: 3.25rem;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .hero-media {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .hero-media img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+      }
+
+      .hero-copy {
+        min-width: 0;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.8rem;
+      }
+
+      .title {
+        margin: 0 0 0.4rem;
+        font-size: clamp(1.85rem, 4vw, 2.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+
+      .phonetic {
+        color: var(--muted);
+        font-size: 1.05rem;
+        letter-spacing: -0.02em;
+        margin-left: 0.25rem;
+      }
+
+      .copy-stack {
+        display: grid;
+        gap: 0.95rem;
+        margin-top: 1rem;
+      }
+
+      .copy-stack p,
+      .manifesto-card p {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .manifesto-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.15rem 1.15rem 1.2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .manifesto-card h2,
+      .stack-title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .manifesto-card p {
+        margin-top: 0.8rem;
+      }
+
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.1rem;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.45rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        font-size: 0.78rem;
+        font-weight: 500;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-head svg {
+        width: 0.95rem;
+        height: 0.95rem;
+        color: var(--text);
+        flex-shrink: 0;
+      }
+
+      .tunes-shell {
+        position: relative;
+        height: 348px;
+        margin-top: 0.35rem;
+      }
+
+      .tune-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 160px;
+        aspect-ratio: 1 / 1.2;
+        border-radius: 12px;
+        cursor: pointer;
+        perspective: 1200px;
+        transform: translateX(calc(var(--index) * 78px));
+        transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), z-index 240ms ease;
+        z-index: calc(10 + var(--index));
+        isolation: isolate;
+      }
+
+      .tunes-shell:hover .tune-card {
+        transform: translateX(calc(var(--index) * 98px));
+      }
+
+      .tune-card:hover,
+      .tune-card:focus-visible {
+        z-index: 99;
+      }
+
+      .tune-record {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        width: 156px;
+        height: 156px;
+        transform: translateX(-50%) translateY(6px);
+        border-radius: 999px;
+        background:
+          radial-gradient(circle at center, #d9d9d9 0 17px, #0b0b0b 17px 23px, transparent 23px),
+          repeating-radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0 2px, rgba(255, 255, 255, 0) 2px 6px),
+          #070707;
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.06);
+        opacity: 0;
+        z-index: 0;
+        transition:
+          transform 560ms cubic-bezier(0.18, 1.45, 0.3, 1),
+          opacity 240ms ease;
+      }
+
+      .tune-record::after {
+        content: attr(data-label);
+        position: absolute;
+        inset: 50%;
+        width: 36px;
+        height: 36px;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: #d4d4d4;
+        color: #111;
+        font-size: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .tune-sleeve {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 12px;
+        outline: 3px solid var(--border-strong);
+        box-shadow: var(--shadow);
+        z-index: 1;
+        transform-origin: center bottom;
+        transition:
+          transform 560ms cubic-bezier(0.16, 1.38, 0.3, 1),
+          box-shadow 320ms ease;
+      }
+
+      .tune-flip {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+
+      .tune-back {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 1.25rem;
+        border-radius: 12px;
+        background: #2d2c2b;
+        color: #f5f5f3;
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .tune-back-copy {
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      .tune-back-title {
+        display: block;
+        font-size: 1.35rem;
+        line-height: 1.08;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+
+      .tune-back-artist {
+        display: block;
+        font-size: 0.95rem;
+        line-height: 1.2;
+        color: rgba(245, 245, 243, 0.72);
+      }
+
+      .tune-sleeve::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.18), transparent 38%);
+        pointer-events: none;
+      }
+
+      .tune-cover {
+        position: absolute;
+        inset: 0;
+      }
+
+      .tune-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .cover-overlay {
+        position: absolute;
+        left: 50%;
+        bottom: -126px;
+        transform: translateX(-50%) translateY(8px);
+        width: max-content;
+        min-width: 120px;
+        max-width: 150px;
+        padding: 0.8rem 0.9rem 0.75rem;
+        background: rgba(38, 38, 38, 0.96);
+        color: #fff;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 120;
+        transition:
+          opacity 180ms ease,
+          transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .cover-title {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .cover-artist {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 0.68rem;
+        line-height: 1.2;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .tune-card:hover .tune-record,
+      .tune-card:focus-visible .tune-record,
+      .tune-card.is-active .tune-record {
+        transform: translateX(-50%) translateY(-118px) scale(1.035);
+        opacity: 1;
+      }
+
+      .tune-card:hover .tune-sleeve,
+      .tune-card:focus-visible .tune-sleeve,
+      .tune-card.is-active .tune-sleeve {
+        transform: translateY(-94px);
+        box-shadow: 0 30px 54px rgba(0, 0, 0, 0.22);
+      }
+
+      .tune-card:hover .cover-overlay,
+      .tune-card:focus-visible .cover-overlay,
+      .tune-card.is-active .cover-overlay {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      @media (min-width: 720px) {
+        .hero {
+          flex-direction: row;
+          align-items: flex-start;
+          gap: 2.25rem;
+        }
+
+        .hero-media {
+          width: min(42%, 280px);
+          flex-shrink: 0;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .page {
+          padding: 1.15rem 1rem 3rem;
+        }
+
+        .section {
+          margin-bottom: 2.5rem;
+        }
+
+        .hero-media {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .tunes-shell {
+          height: auto;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1rem;
+          overflow: visible;
+          padding: 0;
+        }
+
+        .tune-card {
+          position: relative;
+          top: auto;
+          left: auto;
+          flex: none;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          transform: none !important;
+          border-radius: 16px;
+        }
+
+        .tunes-shell:hover .tune-card {
+          transform: none;
+        }
+
+        .tune-card:hover,
+        .tune-card:focus-visible {
+          transform: none !important;
+        }
+
+        .tune-record {
+          display: none;
+        }
+
+        .tune-sleeve {
+          position: absolute;
+          inset: 0;
+          border-radius: 16px;
+          transform: none !important;
+        }
+
+        .tune-flip {
+          transition: transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .tune-card.is-flipped .tune-flip {
+          transform: rotateY(180deg);
+        }
+
+        .tune-back {
+          border-radius: 16px;
+        }
+
+        .tune-card:hover .tune-record,
+        .tune-card:focus-visible .tune-record,
+        .tune-card.is-active .tune-record {
+          transform: none;
+        }
+
+        .tune-card:hover .tune-sleeve,
+        .tune-card:focus-visible .tune-sleeve,
+        .tune-card.is-active .tune-sleeve {
+          transform: none;
+          box-shadow: var(--shadow);
+        }
+
+        .cover-overlay {
+          display: none;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .tunes-shell {
+          gap: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="/">← Back home</a>
+      </div>
+
+      <section class="section hero">
+        <div class="hero-media">
+          <img
+            src="https://ahglinder.com/wp-content/uploads/2024/10/IMG_9495.jpg"
+            alt="Portrait of Glinder"
+            loading="eager"
+          />
+        </div>
+
+        <div class="hero-copy">
+          <span class="eyebrow">About Me</span>
+          <h1 class="title">
+            Hey, I'm Glinder
+            <span class="phonetic">/ˈglɪn.də/</span>
+          </h1>
+
+          <div class="copy-stack">
+            {aboutParagraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="manifesto-card">
+          <h2>Side note</h2>
+          <p> - I'm almost never without socks. </p>
+          <p> - I'd marry Kanye West if I could.</p> 
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 3a9 9 0 0 0-9 9v6a3 3 0 1 0 6 0v-1.6A3.4 3.4 0 0 0 5.6 13H5v-1a7 7 0 0 1 14 0v1h-.6A3.4 3.4 0 0 0 15 16.4V18a3 3 0 1 0 6 0v-6a9 9 0 0 0-9-9Z"
+              fill="currentColor"
+            />
+          </svg>
+          <h2 class="stack-title">Things I'm into</h2>
+        </div>
+
+        <div class="pill-list">
+          {interests.map((item) => (
+            <span class="pill">{item}</span>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 3a9 9 0 0 0-9 9v6a3 3 0 1 0 6 0v-1.6A3.4 3.4 0 0 0 5.6 13H5v-1a7 7 0 0 1 14 0v1h-.6A3.4 3.4 0 0 0 15 16.4V18a3 3 0 1 0 6 0v-6a9 9 0 0 0-9-9Z"
+              fill="currentColor"
+            />
+          </svg>
+          <h2 class="stack-title">Tunes I'm lovin'</h2>
+        </div>
+
+        <div class="tunes-shell" aria-label="Tunes I'm lovin'">
+          {tunes.map((tune, index) => (
+            <article class="tune-card" style={`--index:${index}`} tabindex="0" aria-label={`${tune.title} by ${tune.artist}`}>
+              <div class="tune-record" data-label={tune.label}></div>
+              <div class="tune-flip">
+                <div class="tune-sleeve">
+                  <div class="tune-cover">
+                    <img src={tune.coverSrc} alt={`${tune.title} album cover by ${tune.artist}`} loading="lazy" />
+                  </div>
+                </div>
+                <div class="tune-back" aria-hidden="true">
+                  <div class="tune-back-copy">
+                    <span class="tune-back-title">{tune.title}</span>
+                    <span class="tune-back-artist">{tune.artist}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cover-overlay" aria-hidden="true">
+                <span class="cover-title">{tune.title}</span>
+                <span class="cover-artist">{tune.artist}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const tunesShell = document.querySelector(".tunes-shell");
+        if (!tunesShell) return;
+
+        const cards = Array.from(tunesShell.querySelectorAll(".tune-card"));
+        const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const mobileLayout = window.matchMedia("(max-width: 767px)");
+
+        function setActive(card) {
+          cards.forEach((item) => {
+            item.classList.toggle("is-active", item === card);
+          });
+        }
+
+        function clearActive() {
+          cards.forEach((item) => item.classList.remove("is-active"));
+        }
+
+        function clearFlipped() {
+          cards.forEach((item) => item.classList.remove("is-flipped"));
+        }
+
+        cards.forEach((card) => {
+          card.addEventListener("pointerenter", function () {
+            if (!canHover.matches || mobileLayout.matches) return;
+            setActive(card);
+          });
+
+          card.addEventListener("focusin", function () {
+            if (mobileLayout.matches) return;
+            setActive(card);
+          });
+
+          card.addEventListener("click", function (event) {
+            if (!mobileLayout.matches) return;
+
+            event.preventDefault();
+            const shouldFlip = !card.classList.contains("is-flipped");
+            clearFlipped();
+            if (shouldFlip) {
+              card.classList.add("is-flipped");
+            }
+          });
+        });
+
+        document.addEventListener("pointermove", function (event) {
+          if (!canHover.matches || mobileLayout.matches) return;
+          const activeCard = event.target.closest(".tune-card");
+          if (activeCard && tunesShell.contains(activeCard)) {
+            setActive(activeCard);
+          } else {
+            clearActive();
+          }
+        });
+
+        document.addEventListener("focusin", function (event) {
+          if (mobileLayout.matches) return;
+          const activeCard = event.target.closest(".tune-card");
+          if (activeCard && tunesShell.contains(activeCard)) {
+            setActive(activeCard);
+          } else {
+            clearActive();
+          }
+        });
+
+        document.addEventListener("pointerdown", function (event) {
+          if (event.target.closest(".tune-card")) return;
+          clearActive();
+          clearFlipped();
+        });
+
+        canHover.addEventListener("change", function () {
+          clearActive();
+          clearFlipped();
+        });
+
+        mobileLayout.addEventListener("change", function () {
+          clearActive();
+          clearFlipped();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1235 @@
+---
+const noteUpdated = "";
+
+const sidebarNotes = [
+  {
+    group: "Pinned",
+    icon: "✈️",
+    title: "travel journal",
+    date: "3/13/2024",
+    preview: "A week between Addis Ababa and Dubai, full of kind strangers, malls, deserts, and little moments.",
+    href: "/travel-journal/",
+    active: true,
+  },
+  {
+    group: "Archive",
+    icon: "✎",
+    title: "petty beginnings",
+    date: "1/11/2026",
+    preview: "Relationships, honesty, and the kind of personal writing that starts from small sparks.",
+    href: "/petty-beginnings/",
+    active: false,
+  },
+  {
+    group: "Today",
+    icon: "⚑",
+    title: "entrepreneurship",
+    date: "12/03/2025",
+    preview: "Lessons from building Casestody x Greysole and learning what business asks of you.",
+    href: "/entrepreneurship/",
+    active: false,
+  },
+  {
+    group: "Home",
+    icon: "⌂",
+    title: "back home",
+    date: "4/17/2026",
+    preview: "Return to the main site and browse the rest of the notes-style writing archive.",
+    href: "/",
+    active: false,
+  },
+];
+
+const journalEntries = [
+  {
+    date: "Thursday, March 7, 2024",
+    photos: ["Addis Ababa"],
+    paragraphs: [
+      "Ethiopia surprised me in the best way possible! I went in expecting the typical stereotypes of an “African country,” but Addis Ababa was completely different. It was fascinating and incredibly welcoming.",
+      "The people were amazing! Everyone I met was friendly and hospitable. The views were incredible too – Addis Ababa sits at a high elevation, so you get these gorgeous views. The food was a bit of an adventure. I loved the desserts -cakes, basically pastries, but I’ll admit the rice dishes and sauces weren’t quite my thing. Maybe it just takes getting used to!",
+      "On a fun note, I met a guy named Emmanuel (who goes by Unruly – big Popcaan fan, I guess) while I was there. He was just passing through Addis Ababa on his way from Namibia to Ghana. We stayed next door to each other, so we ended up hanging out and chatting. We even went on a walk.",
+      "The next morning, he woke me up to say goodbye before his early flight. Unexpected friendships are the best kind, right?",
+      "Overall, Addis Ababa was a great introduction to Ethiopia. I can’t wait to explore more of this beautiful country someday!",
+    ],
+  },
+  {
+    date: "Friday, March 8, 2024",
+    photos: ["Ronald", "Dubai Mall", "Fountain show"],
+    paragraphs: [
+      "I think I’m in love! (with Dubai of course)",
+      "I landed in Dubai around 5pm, and by 7pm, I was already out exploring! The city was filled with energyyy, and I couldn’t wait to soak it all in.",
+      "My first stroke of luck came in the form of Ali, an incredibly helpful Iraqi. Needing to exchange currency, Ali not only pointed me toward a forex bureau but also took me to the metro station to save me money.",
+      "He gifted me a metro card preloaded for my journey, then he took me halfway to my destination to ensure I could figure out how to get there before finally parting ways. بارك الله في علي",
+      "Next, I met up with Ronald, a university friend who now lives in Dubai. We weren’t the closest back in school, but reconnected before my trip. Luckily, he was happy to be my Dubai guide! Ron showed me some amazing places, capturing photos along the way.",
+      "Meet Ronald!",
+      "The highlight of the day, however, was the Dubai Mall. Forget child’s play, this place dwarfed Accra Mall! Massive and meticulously designed, navigating it required the provided maps scattered throughout. Inside, a wonderland awaited: cinemas, bookstores, designer stores that made me window shop like a pro, an ice rink, multiple Apple stores, a sprawling aquarium, and even an indoor waterfall. They even had a meticulously designed Chinatown, transporting you straight to Asia!",
+      "The arcade area alone felt bigger than half of Accra Mall, and the food court? Don’t even get me started. Every major chain, like McDonald’s, Starbucks, and KFC, had multiple outlets – a haven for any indecisive person like myself.",
+      "We ended the night watching the Dubai Fountain show outside the mall – I’m ngl, I admire the effort they put into entertaining people. My iphone even started proper working, talmabout I should head indoors, there’s a storm headed my way",
+      "We called it a night around 2am.",
+    ],
+  },
+  {
+    date: "Saturday, March 9, 2024",
+    photos: ["Marina", "The Burj", "Khalid"],
+    paragraphs: [
+      "I slept like a baby but woke up to nonstop rain. Almost missed breakfast because of it (hungry is not a good look, trust me). I had a city tour booked though, and at this point, I didn’t know how I felt about it considering the weather. I bundled up and I was out!",
+      "The tour hit a mix of spots. We checked out an art gallery/museum (I’m not exactly sure on which one it was), but no pictures were allowed there. Next stop: some kind of village. The rain turned my explorer mode off real quick .",
+      "We then headed over to the Marina and you know my feet definitely got some quality sand time, rain or shine.After a lunch break and a short power nap, I headed back out for the second half of the tour, which included the Dubai Mall and the Burj Khalifa. I had already seen the mall, but the Burj was different. The views from up there were breathtaking.",
+      "Tbh, I’m not exactly sure what was happening in that picture",
+      "Anyway, we headed back to the hotel for lunch and I took a power nap to fuel up for round two of the tour. This half involved visiting the Dubai Mall and the Burj Khalifa (yes, the tallest building in the world). Because i had already visited the mall, I was re-experiencing the whole thing, but the Burj? Oh, the views! Absolutely breathtaking.",
+      "I ditched the tour group and met up with Ron (you remember Ron, my friend from uni) to go get some food from the food court within the mall.",
+      "While leaving the food court, guess who we saw walking towards us? I was just telling Ron how one of the guys looked exactly like Khalid, and Ron’s all nonchalant, “Yeah, yeah, that’s him.” Well, whaddya know? I took a photo, posted it on Twitter, tagged him , and he liked it. The absolute peak of my trip #khalidmetme",
+    ],
+  },
+  {
+    date: "Sunday, March 10, 2024",
+    photos: ["Creek walk"],
+    paragraphs: [
+      "Feeling under the weather today, I knew a sleep-in was just what I needed. I woke up around 2pm, however, after a show binge, I realized with a laugh, “what am I doing in bed?”",
+      "I quickly took a shower and headed to the creek, the sound of flowing water already calming my mind. Definitely worth getting out of bed for",
+    ],
+  },
+  {
+    date: "Monday, March 11, 2024",
+    photos: ["Desert ride", "Quad bike", "Camp dinner"],
+    paragraphs: [
+      "I met a group of French travelers originally from Congo, and we clicked immediately. Thankfully, all those years of taking French seriously in school paid off – communication was a breeze! One of them, Enock, became a fast friend. He seemed around my age, maybe a little younger. Our driver took us on one of those safari rides! My heart was pumping with adrenaline the entire time. Next, I got on a quad bike in the desert! I even rode a camel before reaching a desert camp. The evening came alive with performances, dancing, and an incredible feast – goodness, there was so much food!",
+    ],
+  },
+  {
+    date: "Tuesday, March 12, 2024",
+    photos: ["Family moment", "Ice rink"],
+    paragraphs: [
+      "Today, I decided to take a walk. My neighborhood walk today brought a heartwarming scene: a dad playfully interacting with his kids. It was just too sweet! I had to capture it on video.",
+      "Next, I went to the ice rink for my first-time ice skating!",
+      "Despite my attempts to film look-back-and-be-proud moments, let’s just say cuteness and conquering the ice weren’t on the agenda today.",
+      "While I may not be a pro just yet, I definitely know the basics. All those falls couldn’t have been for nothing, right? ",
+    ],
+  },
+  {
+    date: "Wednesday, March 13, 2024",
+    photos: ["Ali"],
+    paragraphs: [
+      "It’s my last day and I wanted to truly absorb the city’s atmosphere. I wandered its streets, eventually finding a park to sit and simply take it all in. It was a perfect moment of reflection.",
+      "Later, Ron and I went shopping. He was incredibly kind and patient with me – I definitely owe him one!",
+      "Today was picture day with Ali! We planned to meet around 11 pm, but a meeting threw his schedule off. Ended up being a mad dash after midnight to meet him, which stressed me out because I had to be at the airport!",
+      "Despite the scramble, Ali surprised me with his humor (seriously, the guy’s hilarious!). He said he walked 5 km to come and see me. I can’t thank him enough for making the effort. Thankfully, I made it to the airport on time – cheers to that!",
+      "After literally running to meet Ali, here’s a picture I got with him",
+      ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Journal | Glinder</title>
+    <meta
+      name="description"
+      content="A Notes-style version of Glinder's travel journal through Addis Ababa and Dubai."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <style>
+      :root {
+        --journal-window: rgba(255, 255, 255, 0.84);
+        --journal-sidebar: rgba(243, 243, 247, 0.92);
+        --journal-pane: rgba(255, 255, 255, 0.88);
+        --journal-divider: rgba(15, 23, 42, 0.08);
+        --journal-search: #e8e8ed;
+        --journal-preview: #6e6e73;
+        --journal-selected: #f4c542;
+        --journal-selected-text: #1c1c1e;
+        --journal-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --journal-window: rgba(49, 49, 49, 0.96);
+          --journal-sidebar: rgba(54, 54, 54, 0.96);
+          --journal-pane: rgba(50, 50, 50, 0.98);
+          --journal-divider: rgba(232, 216, 201, 0.1);
+          --journal-search: #404040;
+          --journal-preview: rgba(232, 216, 201, 0.64);
+          --journal-selected: #9b7c23;
+          --journal-selected-text: #fff8ea;
+          --journal-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      body {
+        min-height: 100vh;
+      }
+
+      .journal-page {
+        min-height: 100vh;
+        padding: clamp(1rem, 2vw, 2rem);
+      }
+
+      .journal-shell {
+        display: grid;
+        grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+        min-height: calc(100vh - clamp(2rem, 4vw, 4rem));
+        border: 1px solid var(--journal-divider);
+        border-radius: 30px;
+        overflow: hidden;
+        background: var(--journal-window);
+        box-shadow: var(--journal-shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .journal-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.35rem 1rem 1.25rem;
+        background: var(--journal-sidebar);
+        border-right: 1px solid var(--journal-divider);
+      }
+
+      .journal-chrome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0 0.25rem;
+      }
+
+      .journal-traffic {
+        display: flex;
+        gap: 0.65rem;
+      }
+
+      .journal-traffic a,
+      .journal-traffic span {
+        display: block;
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 999px;
+      }
+
+      .journal-traffic a {
+        background: #ff5f57;
+      }
+
+      .journal-traffic span:nth-child(2) { background: #febc2e; }
+      .journal-traffic span:nth-child(3) { background: #28c840; }
+
+      .journal-compose {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.55rem;
+        height: 2.55rem;
+        border: 1px solid var(--journal-divider);
+        border-radius: 14px;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      .journal-search {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        min-height: 3.15rem;
+        padding: 0 1rem;
+        border-radius: 16px;
+        background: var(--journal-search);
+        color: var(--journal-preview);
+        font-size: 1.02rem;
+      }
+
+      .journal-search span:first-child {
+        font-size: 1.28rem;
+        line-height: 1;
+      }
+
+      .journal-groups {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .journal-group {
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .journal-group-title {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .journal-note {
+        display: grid;
+        gap: 0.3rem;
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        color: inherit;
+        background: transparent;
+        border: 1px solid transparent;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+      }
+
+      .journal-note:hover,
+      .journal-note:focus-visible {
+        background: color-mix(in srgb, var(--journal-search) 78%, transparent);
+      }
+
+      .journal-note-active {
+        background: var(--journal-selected);
+        color: var(--journal-selected-text);
+      }
+
+      .journal-note-active .journal-note-date,
+      .journal-note-active .journal-note-preview {
+        color: color-mix(in srgb, var(--journal-selected-text) 78%, transparent);
+      }
+
+      .journal-note-top {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.98rem;
+        font-weight: 600;
+      }
+
+      .journal-note-title {
+        font-size: 0.98rem;
+        font-weight: 600;
+        text-transform: lowercase;
+      }
+
+      .journal-note-date {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .journal-note-preview {
+        color: var(--journal-preview);
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+
+      .journal-reader {
+        padding: clamp(1.5rem, 3vw, 3rem);
+        background: var(--journal-pane);
+      }
+
+      .journal-mobile-close {
+        display: none;
+      }
+
+      .journal-reader-inner {
+        width: min(100%, 860px);
+        margin: 0 auto;
+      }
+
+      .journal-reader-date {
+        margin-bottom: 1.5rem;
+        color: var(--muted);
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .journal-title {
+        margin-bottom: 1.35rem;
+        font-size: clamp(2.3rem, 5vw, 3.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        text-transform: lowercase;
+      }
+
+      .journal-summary {
+        margin-bottom: 2.25rem;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+      }
+
+      .journal-entry {
+        padding: 1.5rem 0;
+        border-top: 1px solid var(--journal-divider);
+      }
+
+      .journal-entry:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .journal-entry-date {
+        color: var(--muted);
+        font-size: 0.94rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .journal-entry-title {
+        margin-top: 0.65rem;
+        font-size: clamp(1.55rem, 2.4vw, 2.1rem);
+        line-height: 1.05;
+      }
+
+      .journal-entry-copy {
+        display: grid;
+        gap: 0.95rem;
+        margin-top: 1rem;
+      }
+
+      .journal-entry-copy p {
+        color: var(--fg);
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .journal-inline-image {
+        width: min(100%, 620px);
+        margin: 0.35rem auto 0.95rem;
+      }
+
+      .journal-inline-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 24px;
+      }
+
+      .journal-carousel {
+        position: relative;
+        margin: 0.35rem 0 0.95rem;
+        overflow: hidden;
+        border: 1px solid var(--journal-divider);
+        border-radius: 28px;
+        background: color-mix(in srgb, var(--journal-search) 78%, transparent);
+      }
+
+      .journal-carousel-viewport {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        background: color-mix(in srgb, var(--journal-search) 86%, transparent);
+      }
+
+      .journal-carousel-slide {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        display: none;
+        pointer-events: none;
+      }
+
+      .journal-carousel-slide.is-active {
+        display: block;
+        pointer-events: auto;
+      }
+
+      .journal-carousel-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .journal-carousel-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.42);
+        color: #fff;
+        font-size: 1.7rem;
+        line-height: 1;
+        transform: translateY(-50%);
+        backdrop-filter: blur(14px);
+        transition: background 0.15s ease, transform 0.15s ease;
+        appearance: none;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .journal-carousel-arrow:hover,
+      .journal-carousel-arrow:focus-visible {
+        background: rgba(15, 23, 42, 0.62);
+        transform: translateY(-50%) scale(1.03);
+      }
+
+      .journal-carousel-arrow-prev {
+        left: 1rem;
+      }
+
+      .journal-carousel-arrow-next {
+        right: 1rem;
+      }
+
+      .journal-carousel-dots {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.32);
+        transform: translateX(-50%);
+        backdrop-filter: blur(14px);
+      }
+
+      .journal-carousel-dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.42);
+        transition: transform 0.15s ease, background 0.15s ease;
+        appearance: none;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .journal-carousel-dot.is-active {
+        background: #fff;
+        transform: scale(1.15);
+      }
+
+      .journal-photos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 1rem;
+      }
+
+      .journal-photo-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2.35rem;
+        padding: 0.55rem 0.85rem;
+        border: 1px solid var(--journal-divider);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        background: color-mix(in srgb, var(--journal-search) 70%, transparent);
+      }
+
+      .journal-footer {
+        margin-top: 2rem;
+        padding-top: 1.35rem;
+        border-top: 1px solid var(--journal-divider);
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .journal-footer a {
+        color: var(--accent);
+      }
+
+      @media (max-width: 980px) {
+        .journal-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .journal-sidebar {
+          border-right: 0;
+          border-bottom: 1px solid var(--journal-divider);
+        }
+
+        .journal-groups {
+          gap: 0.9rem;
+        }
+
+        .journal-group {
+          gap: 0.5rem;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .journal-page {
+          padding: 0;
+        }
+
+        .journal-shell {
+          display: block;
+          min-height: 100vh;
+          border-radius: 0;
+          border: 0;
+          box-shadow: none;
+        }
+
+        .journal-reader {
+          min-height: 100vh;
+          padding: 1rem 1rem 2rem;
+        }
+
+        .journal-sidebar {
+          display: none;
+        }
+
+        .journal-mobile-close {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 2.6rem;
+          height: 2.6rem;
+          margin-bottom: 1rem;
+          border: 1px solid var(--journal-divider);
+          border-radius: 999px;
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+
+        .journal-reader-date {
+          text-align: left;
+          margin-bottom: 1rem;
+        }
+
+        .journal-title {
+          font-size: 2.35rem;
+        }
+
+        .journal-summary {
+          font-size: 1rem;
+        }
+
+        .journal-entry-copy p {
+          font-size: 0.98rem;
+        }
+
+        .journal-carousel-arrow {
+          width: 2.65rem;
+          height: 2.65rem;
+          font-size: 1.45rem;
+        }
+
+        .journal-carousel-arrow-prev {
+          left: 0.75rem;
+        }
+
+        .journal-carousel-arrow-next {
+          right: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="journal-page">
+      <div class="journal-shell">
+        <aside class="journal-sidebar" aria-label="Notes navigation">
+          <div class="journal-chrome">
+            <div class="journal-traffic">
+              <a href="/" aria-label="Close and go home"></a>
+              <span></span>
+              <span></span>
+            </div>
+
+            <span class="journal-compose" aria-hidden="true">✎</span>
+          </div>
+
+          <div class="journal-search" aria-hidden="true">
+            <span>⌕</span>
+            <span>Search</span>
+          </div>
+
+          <div class="journal-groups">
+            {Array.from(new Set(sidebarNotes.map((note) => note.group))).map((group) => (
+              <section class="journal-group">
+                <h2 class="journal-group-title">{group}</h2>
+
+                {sidebarNotes
+                  .filter((note) => note.group === group)
+                  .map((note) => (
+                    <a
+                      class={`journal-note ${note.active ? "journal-note-active" : ""}`}
+                      href={note.href}
+                      target={note.href.startsWith("http") ? "_blank" : undefined}
+                      rel={note.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      <div class="journal-note-top">
+                        <span aria-hidden="true">{note.icon}</span>
+                        <span class="journal-note-title">{note.title}</span>
+                      </div>
+                      <span class="journal-note-date">{note.date}</span>
+                      <p class="journal-note-preview">{note.preview}</p>
+                    </a>
+                  ))}
+              </section>
+            ))}
+          </div>
+        </aside>
+
+        <article class="journal-reader">
+          <div class="journal-reader-inner">
+            <a class="journal-mobile-close" href="/" aria-label="Close and go home">✕</a>
+            <p class="journal-reader-date">{noteUpdated}</p>
+            <h1 class="journal-title">travel journal</h1>
+            <p class="journal-summary">
+              Embark on an adventure with me as I dive into a week of travel…
+            </p>
+
+            {journalEntries.map((entry) => (
+              <section class="journal-entry">
+                <p class="journal-entry-date">{entry.date}</p>
+                <h2 class="journal-entry-title">{entry.title}</h2>
+
+                <div class="journal-entry-copy">
+                  {entry.paragraphs.map((paragraph) => (
+                    <>
+                      <p>{paragraph}</p>
+                      {paragraph === "Meet Ronald!" && (
+                        <figure class="journal-inline-image">
+                          <img
+                            src="/images/featured/Ronald.jpg"
+                            alt="Ronald in Dubai"
+                            loading="lazy"
+                          />
+                        </figure>
+                      )}
+                      {paragraph ===
+                        "The highlight of the day, however, was the Dubai Mall. Forget child’s play, this place dwarfed Accra Mall! Massive and meticulously designed, navigating it required the provided maps scattered throughout. Inside, a wonderland awaited: cinemas, bookstores, designer stores that made me window shop like a pro, an ice rink, multiple Apple stores, a sprawling aquarium, and even an indoor waterfall. They even had a meticulously designed Chinatown, transporting you straight to Asia!" && (
+                        <div
+                          class="journal-carousel"
+                          id="dubai-mall-carousel"
+                          data-carousel
+                          data-interval="4200"
+                          aria-label="Dubai Mall photo carousel"
+                        >
+                          <div class="journal-carousel-viewport">
+                            <div class="journal-carousel-track" data-carousel-track>
+                              <figure class="journal-carousel-slide is-active" data-carousel-slide>
+                                <img
+                                  src="/images/featured/Dubai Mall I.jpg"
+                                  alt="Inside Dubai Mall"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/Dubai Mall II.jpg"
+                                  alt="More of Dubai Mall"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/Dubai Mall III.jpg"
+                                  alt="Dubai Mall interior details"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/Dubai Mall IV.jpg"
+                                  alt="Another view from Dubai Mall"
+                                  loading="lazy"
+                                />
+                              </figure>
+                            </div>
+                          </div>
+
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-prev"
+                            type="button"
+                            data-carousel-prev
+                            aria-label="Previous Dubai Mall image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('dubai-mall-carousel', -1)"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-next"
+                            type="button"
+                            data-carousel-next
+                            aria-label="Next Dubai Mall image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('dubai-mall-carousel', 1)"
+                          >
+                            ›
+                          </button>
+
+                          <div class="journal-carousel-dots" aria-label="Choose Dubai Mall image">
+                            <button
+                              class="journal-carousel-dot is-active"
+                              type="button"
+                              data-carousel-dot="0"
+                              aria-label="Show first Dubai Mall image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('dubai-mall-carousel', 0)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="1"
+                              aria-label="Show second Dubai Mall image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('dubai-mall-carousel', 1)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="2"
+                              aria-label="Show third Dubai Mall image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('dubai-mall-carousel', 2)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="3"
+                              aria-label="Show fourth Dubai Mall image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('dubai-mall-carousel', 3)"
+                            ></button>
+                          </div>
+                        </div>
+                      )}
+                      {paragraph ===
+                        "Anyway, we headed back to the hotel for lunch and I took a power nap to fuel up for round two of the tour. This half involved visiting the Dubai Mall and the Burj Khalifa (yes, the tallest building in the world). Because i had already visited the mall, I was re-experiencing the whole thing, but the Burj? Oh, the views! Absolutely breathtaking." && (
+                        <div
+                          class="journal-carousel"
+                          id="burj-carousel"
+                          data-carousel
+                          data-interval="4200"
+                          aria-label="Burj Khalifa photo carousel"
+                        >
+                          <div class="journal-carousel-viewport">
+                            <div class="journal-carousel-track" data-carousel-track>
+                              <figure class="journal-carousel-slide is-active" data-carousel-slide>
+                                <img
+                                  src="/images/featured/burj I.jpg"
+                                  alt="View from the Burj Khalifa"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/burj II.jpg"
+                                  alt="Another view from the Burj Khalifa"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/burj III.jpg"
+                                  alt="Burj Khalifa skyline view"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/burj IV.jpg"
+                                  alt="Looking out from the Burj Khalifa"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/burj V.jpg"
+                                  alt="Final Burj Khalifa view"
+                                  loading="lazy"
+                                />
+                              </figure>
+                            </div>
+                          </div>
+
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-prev"
+                            type="button"
+                            data-carousel-prev
+                            aria-label="Previous Burj Khalifa image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('burj-carousel', -1)"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-next"
+                            type="button"
+                            data-carousel-next
+                            aria-label="Next Burj Khalifa image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('burj-carousel', 1)"
+                          >
+                            ›
+                          </button>
+
+                          <div class="journal-carousel-dots" aria-label="Choose Burj Khalifa image">
+                            <button
+                              class="journal-carousel-dot is-active"
+                              type="button"
+                              data-carousel-dot="0"
+                              aria-label="Show first Burj Khalifa image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('burj-carousel', 0)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="1"
+                              aria-label="Show second Burj Khalifa image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('burj-carousel', 1)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="2"
+                              aria-label="Show third Burj Khalifa image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('burj-carousel', 2)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="3"
+                              aria-label="Show fourth Burj Khalifa image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('burj-carousel', 3)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="4"
+                              aria-label="Show fifth Burj Khalifa image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('burj-carousel', 4)"
+                            ></button>
+                          </div>
+                        </div>
+                      )}
+                      {paragraph ===
+                        "While leaving the food court, guess who we saw walking towards us? I was just telling Ron how one of the guys looked exactly like Khalid, and Ron’s all nonchalant, “Yeah, yeah, that’s him.” Well, whaddya know? I took a photo, posted it on Twitter, tagged him , and he liked it. The absolute peak of my trip #khalidmetme" && (
+                        <div
+                          class="journal-carousel"
+                          id="khalid-carousel"
+                          data-carousel
+                          data-interval="4200"
+                          aria-label="Khalid photo carousel"
+                        >
+                          <div class="journal-carousel-viewport">
+                            <div class="journal-carousel-track" data-carousel-track>
+                              <figure class="journal-carousel-slide is-active" data-carousel-slide>
+                                <img
+                                  src="/images/featured/Khalid I.jpg"
+                                  alt="Photo with Khalid in Dubai Mall"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/Khalid II.jpg"
+                                  alt="Another photo with Khalid in Dubai Mall"
+                                  loading="lazy"
+                                />
+                              </figure>
+                            </div>
+                          </div>
+
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-prev"
+                            type="button"
+                            data-carousel-prev
+                            aria-label="Previous Khalid image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('khalid-carousel', -1)"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-next"
+                            type="button"
+                            data-carousel-next
+                            aria-label="Next Khalid image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('khalid-carousel', 1)"
+                          >
+                            ›
+                          </button>
+
+                          <div class="journal-carousel-dots" aria-label="Choose Khalid image">
+                            <button
+                              class="journal-carousel-dot is-active"
+                              type="button"
+                              data-carousel-dot="0"
+                              aria-label="Show first Khalid image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('khalid-carousel', 0)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="1"
+                              aria-label="Show second Khalid image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('khalid-carousel', 1)"
+                            ></button>
+                          </div>
+                        </div>
+                      )}
+                      {paragraph ===
+                        "I met a group of French travelers originally from Congo, and we clicked immediately. Thankfully, all those years of taking French seriously in school paid off – communication was a breeze! One of them, Enock, became a fast friend. He seemed around my age, maybe a little younger. Our driver took us on one of those safari rides! My heart was pumping with adrenaline the entire time. Next, I got on a quad bike in the desert! I even rode a camel before reaching a desert camp. The evening came alive with performances, dancing, and an incredible feast – goodness, there was so much food!" && (
+                        <div
+                          class="journal-carousel"
+                          id="desert-carousel"
+                          data-carousel
+                          data-interval="4200"
+                          aria-label="Desert camp photo carousel"
+                        >
+                          <div class="journal-carousel-viewport">
+                            <div class="journal-carousel-track" data-carousel-track>
+                              <figure class="journal-carousel-slide is-active" data-carousel-slide>
+                                <img
+                                  src="/images/featured/dessert I.jpg"
+                                  alt="Dessert spread at the desert camp"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/dessert II.jpg"
+                                  alt="More food from the desert camp feast"
+                                  loading="lazy"
+                                />
+                              </figure>
+                              <figure class="journal-carousel-slide" data-carousel-slide>
+                                <img
+                                  src="/images/featured/desert III.jpg"
+                                  alt="Desert camp scene at night"
+                                  loading="lazy"
+                                />
+                              </figure>
+                            </div>
+                          </div>
+
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-prev"
+                            type="button"
+                            data-carousel-prev
+                            aria-label="Previous desert image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('desert-carousel', -1)"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            class="journal-carousel-arrow journal-carousel-arrow-next"
+                            type="button"
+                            data-carousel-next
+                            aria-label="Next desert image"
+                            onclick="window.travelJournalCarouselMove && window.travelJournalCarouselMove('desert-carousel', 1)"
+                          >
+                            ›
+                          </button>
+
+                          <div class="journal-carousel-dots" aria-label="Choose desert image">
+                            <button
+                              class="journal-carousel-dot is-active"
+                              type="button"
+                              data-carousel-dot="0"
+                              aria-label="Show first desert image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('desert-carousel', 0)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="1"
+                              aria-label="Show second desert image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('desert-carousel', 1)"
+                            ></button>
+                            <button
+                              class="journal-carousel-dot"
+                              type="button"
+                              data-carousel-dot="2"
+                              aria-label="Show third desert image"
+                              onclick="window.travelJournalCarouselGoTo && window.travelJournalCarouselGoTo('desert-carousel', 2)"
+                            ></button>
+                          </div>
+                        </div>
+                      )}
+                      {paragraph ===
+                        "While I may not be a pro just yet, I definitely know the basics. All those falls couldn’t have been for nothing, right? " && (
+                        <figure class="journal-inline-image">
+                          <img
+                            src="/images/featured/Skating.jpg"
+                            alt="Ice skating moment from the Dubai rink"
+                            loading="lazy"
+                          />
+                        </figure>
+                      )}
+                      {paragraph === "After literally running to meet Ali, here’s a picture I got with him" && (
+                        <figure class="journal-inline-image">
+                          <img
+                            src="/images/featured/Ali.jpg"
+                            alt="Photo with Ali in Dubai"
+                            loading="lazy"
+                          />
+                        </figure>
+                      )}
+                      {paragraph === "Tbh, I’m not exactly sure what was happening in that picture" && (
+                        <figure class="journal-inline-image">
+                          <img
+                            src="/images/featured/Beach.jpg"
+                            alt="Beach stop during the Dubai city tour"
+                            loading="lazy"
+                          />
+                        </figure>
+                      )}
+                    </>
+                  ))}
+                </div>
+
+                <div class="journal-photos" aria-label={`Photo notes from ${entry.date}`}>
+                  {entry.photos.map((photo) => (
+                    <span class="journal-photo-chip">{photo}</span>
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            <footer class="journal-footer">
+            </footer>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <script is:inline>
+      (function () {
+        var prefersReducedMotion =
+          typeof window.matchMedia === "function" &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var carouselStates = {};
+
+        function renderCarousel(state) {
+          var index = state.currentIndex;
+
+          state.slides.forEach(function (slide, slideIndex) {
+            var isActive = slideIndex === index;
+            slide.classList.toggle("is-active", isActive);
+            slide.setAttribute("aria-hidden", String(!isActive));
+          });
+
+          state.dots.forEach(function (dot, dotIndex) {
+            var isActive = dotIndex === index;
+            dot.classList.toggle("is-active", isActive);
+            dot.setAttribute("aria-pressed", String(isActive));
+          });
+        }
+
+        function stopAutoplay(state) {
+          if (state.autoplayId !== null) {
+            window.clearInterval(state.autoplayId);
+            state.autoplayId = null;
+          }
+        }
+
+        function startAutoplay(state) {
+          stopAutoplay(state);
+
+          if (prefersReducedMotion || state.slides.length < 2) {
+            return;
+          }
+
+          state.autoplayId = window.setInterval(function () {
+            state.currentIndex = (state.currentIndex + 1) % state.slides.length;
+            renderCarousel(state);
+          }, state.interval);
+        }
+
+        function moveCarousel(id, step) {
+          var state = carouselStates[id];
+
+          if (!state) {
+            return;
+          }
+
+          state.currentIndex =
+            (state.currentIndex + step + state.slides.length) % state.slides.length;
+          renderCarousel(state);
+          startAutoplay(state);
+        }
+
+        function goToCarousel(id, index) {
+          var state = carouselStates[id];
+
+          if (!state) {
+            return;
+          }
+
+          state.currentIndex = index;
+          renderCarousel(state);
+          startAutoplay(state);
+        }
+
+        function initCarousel(carousel) {
+          var id = carousel.id;
+          var slides = Array.prototype.slice.call(
+            carousel.querySelectorAll("[data-carousel-slide]")
+          );
+          var dots = Array.prototype.slice.call(
+            carousel.querySelectorAll("[data-carousel-dot]")
+          );
+          var interval = Number(carousel.getAttribute("data-interval") || 4200);
+
+          if (!id || slides.length === 0) {
+            return;
+          }
+
+          var state = {
+            id: id,
+            element: carousel,
+            slides: slides,
+            dots: dots,
+            interval: interval,
+            currentIndex: 0,
+            autoplayId: null,
+          };
+
+          carouselStates[id] = state;
+
+          carousel.addEventListener("mouseenter", function () {
+            stopAutoplay(state);
+          });
+          carousel.addEventListener("mouseleave", function () {
+            startAutoplay(state);
+          });
+          carousel.addEventListener("focusin", function () {
+            stopAutoplay(state);
+          });
+          carousel.addEventListener("focusout", function () {
+            window.setTimeout(function () {
+              if (!carousel.contains(document.activeElement)) {
+                startAutoplay(state);
+              }
+            }, 0);
+          });
+
+          renderCarousel(state);
+          startAutoplay(state);
+        }
+
+        window.travelJournalCarouselMove = moveCarousel;
+        window.travelJournalCarouselGoTo = goToCarousel;
+
+        Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), function (
+          carousel
+        ) {
+          initCarousel(carousel);
+        });
+
+        document.addEventListener("visibilitychange", function () {
+          Object.keys(carouselStates).forEach(function (id) {
+            var state = carouselStates[id];
+
+            if (document.hidden) {
+              stopAutoplay(state);
+              return;
+            }
+
+            startAutoplay(state);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

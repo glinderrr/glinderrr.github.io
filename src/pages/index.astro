@@ -1,41 +1,104 @@
 ---
-// Edit the content below to personalise your site
-const name       = "Glinder";
-const phonetic   = "/ˈjɔːr neɪm/";
-const bio        = `I'm a creative builder and an entrepreneur. Also, curious by default.`;
+const name = "Glinder";
+const phonetic = "/ˈglɪn.də/";
+const bio =
+  "I'm a creative builder based in Ghana. I design and build digital experiences that feel simple, personal, and thoughtful.";
+const currentWork =
+  "I am currently building ideas across design, media, and internet products while exploring where creativity and entrepreneurship overlap.";
 
 const links = [
-  { label: "MAIL",      href: "mailto:mail@ahglinder.com" },
-  { label: "YOUTUBE",   href: "https://youtube.com/@justgreyish" },
-  { label: "X",         href: "https://x.com/@glinderrr" },
+  { label: "MAIL", href: "mailto:mail@ahglinder.com" },
+  { label: "YOUTUBE", href: "https://youtube.com/@justgreyish" },
+  { label: "X", href: "https://x.com/@glinderrr" },
   { label: "INSTAGRAM", href: "https://instagram.com/@glinderrrr" },
 ];
 
-const navLinks = [
-  { label: "Home",  href: "/" },
-  { label: "About", href: "/about" },
+const blogNotes = [
+  {
+    title: "Petty Beginnings",
+    meta: "Relationships",
+    value: "Jan 2026",
+    href: "/petty-beginnings/",
+  },
+  {
+    title: "Entrepreneurship: Lessons from Building Casestody x Greysole",
+    meta: "Business, Strategy",
+    value: "Dec 2025",
+    href: "/entrepreneurship/",
+  },
+  {
+    title: "Travel Journal: A Trip to Ethiopia + Dubai",
+    meta: "Travel, Lifestyle",
+    value: "Mar 2024",
+    href: "/travel-journal/",
+  },
+  
 ];
 
-const projects = [
+const workItems = [
   {
-    name: "Project One",
-    href: "#",
-    badges: [{ label: "Design", style: "blue" }],
+    name: "Showcase",
+    href: "https://showcaseapp.live",
+    tags: [
+      { label: "Screen Recording", style: "purple" },
+      { label: "Dev", style: "orange" },
+    ],
   },
   {
-    name: "Project Two",
-    href: "#",
-    badges: [{ label: "Design", style: "blue" }, { label: "Dev", style: "green" }],
+    name: "BusyOs",
+    href: "https://joinbusyos.com",
+    tags: [
+      { label: "Dev", style: "blue" },
+      { label: "POS", style: "green" },
+    ],
   },
   {
-    name: "Project Three",
-    href: "#",
-    badges: [{ label: "Research", style: "orange" }],
+    name: "Busyparade",
+    href: "https://busyparade.com",
+    tags: [
+      { label: "Web Design", style: "orange" },
+      { label: "Content", style: "purple" },
+    ],
   },
   {
-    name: "Project Four",
-    href: "#",
-    badges: [{ label: "Open Source", style: "purple" }],
+    name: "Ghfixer",
+    href: "https://ghfixer.com",
+    tags: [
+      { label: "Artisans", style: "green" },
+      { label: "Dev", style: "blue" },
+    ],
+  },
+  {
+    name: "Greysports",
+    href: "/greysports/",
+    tags: [
+      { label: "Casestudy", style: "purple" },
+      { label: "Design", style: "orange" },
+    ],
+  },
+];
+
+const featureCards = [
+  {
+    title: "Business",
+    cta: "Open Page",
+    href: "/business/",
+    imageSrc: "/images/featured/Business.jpg",
+    imageAlt: "A business feature card image.",
+  },
+  {
+    title: "Studio",
+    cta: "View Illustrations",
+    href: "/studio/",
+    imageSrc: "/images/featured/Studio.jpg",
+    imageAlt: "A monochrome portrait wearing large over-ear headphones.",
+  },
+  {
+    title: "Greywiththesign",
+    cta: "See More",
+    href: "/greywiththesign/",
+    imageSrc: "/images/featured/gws.jpg",
+    imageAlt: "A monochrome product card showing a bottle on a sculpted surface.",
   },
 ];
 ---
@@ -47,334 +110,171 @@ const projects = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{name}</title>
     <meta name="description" content={`Portfolio of ${name}`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <script is:inline>
-      // Apply theme before paint to avoid flash
-      (function () {
-        const stored = localStorage.getItem('theme');
-        const preferred = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', preferred);
-      })();
-    </script>
   </head>
 
   <body>
     <div class="layout">
+      <nav class="site-nav" aria-label="Primary">
+        <div class="site-nav-inner">
+          <a class="site-nav-link" href="/about-me/">About Me</a>
+        </div>
+      </nav>
 
-      <!-- ── Sidebar ── -->
-      <aside class="sidebar">
-        <nav class="sidebar-nav">
-          {navLinks.map(l => <a href={l.href}>{l.label}</a>)}
-        </nav>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <span id="themeIcon">○</span>
-        </button>
-      </aside>
-
-      <!-- ── Main ── -->
       <main class="main">
         <div class="content">
-
-          <!-- Frog easter egg (desktop only) -->
-          <div class="easter-egg" id="frogEgg">
-            <div class="frog-wrap" id="frogWrap">
-              <svg id="frogSvg" viewBox="0 0 120 128" width="124" height="124" xmlns="http://www.w3.org/2000/svg">
-                <!-- Ground shadow -->
-                <ellipse cx="60" cy="125" rx="38" ry="5" fill="#000" opacity="0.07"/>
-
-                <!-- Toes -->
-                <circle cx="20" cy="118" r="8" fill="#2ea84a"/>
-                <circle cx="32" cy="124" r="8" fill="#2ea84a"/>
-                <circle cx="45" cy="121" r="8" fill="#2ea84a"/>
-                <circle cx="75" cy="121" r="8" fill="#2ea84a"/>
-                <circle cx="88" cy="124" r="8" fill="#2ea84a"/>
-                <circle cx="100" cy="118" r="8" fill="#2ea84a"/>
-
-                <!-- Body -->
-                <ellipse cx="60" cy="94" rx="52" ry="42" fill="#3dba5f"/>
-                <!-- Body light (simulates roundness) -->
-                <ellipse cx="50" cy="82" rx="36" ry="26" fill="#68d98a" opacity="0.55"/>
-
-                <!-- Belly -->
-                <ellipse cx="60" cy="102" rx="34" ry="27" fill="#d4f7e0"/>
-
-                <!-- Eye bumps -->
-                <circle cx="36" cy="52" r="26" fill="#3dba5f"/>
-                <circle cx="84" cy="52" r="26" fill="#3dba5f"/>
-                <!-- Bump highlights -->
-                <circle cx="28" cy="43" r="11" fill="#68d98a" opacity="0.5"/>
-                <circle cx="76" cy="43" r="11" fill="#68d98a" opacity="0.5"/>
-
-                <!-- Head bridge -->
-                <ellipse cx="60" cy="72" rx="46" ry="28" fill="#3dba5f"/>
-                <!-- Head highlight -->
-                <ellipse cx="52" cy="63" rx="30" ry="17" fill="#68d98a" opacity="0.4"/>
-
-                <!-- Eye whites -->
-                <circle cx="36" cy="50" r="20" fill="white"/>
-                <circle cx="84" cy="50" r="20" fill="white"/>
-
-                <!-- Iris (warm amber) -->
-                <circle cx="36" cy="50" r="13" fill="#c8920a"/>
-                <circle cx="84" cy="50" r="13" fill="#c8920a"/>
-                <!-- Iris ring detail -->
-                <circle cx="36" cy="50" r="13" fill="none" stroke="#9a6c00" stroke-width="1.5" opacity="0.6"/>
-                <circle cx="84" cy="50" r="13" fill="none" stroke="#9a6c00" stroke-width="1.5" opacity="0.6"/>
-
-                <!-- Pupils -->
-                <circle id="pupilL" cx="36" cy="50" r="8" fill="#0f0f0f"/>
-                <circle id="pupilR" cx="84" cy="50" r="8" fill="#0f0f0f"/>
-
-                <!-- Eye rim -->
-                <circle cx="36" cy="50" r="20" fill="none" stroke="#2a9449" stroke-width="1.2" opacity="0.35"/>
-                <circle cx="84" cy="50" r="20" fill="none" stroke="#2a9449" stroke-width="1.2" opacity="0.35"/>
-
-                <!-- Shine large -->
-                <circle id="shineL"  cx="41" cy="43" r="5.5" fill="white"/>
-                <circle id="shineR"  cx="89" cy="43" r="5.5" fill="white"/>
-                <!-- Shine small -->
-                <circle id="shine2L" cx="45" cy="48" r="2.2" fill="white" opacity="0.7"/>
-                <circle id="shine2R" cx="93" cy="48" r="2.2" fill="white" opacity="0.7"/>
-
-                <!-- Cheek blush -->
-                <ellipse cx="20" cy="84" rx="10" ry="7" fill="#fda4af" opacity="0.22"/>
-                <ellipse cx="100" cy="84" rx="10" ry="7" fill="#fda4af" opacity="0.22"/>
-
-                <!-- Nostrils -->
-                <ellipse cx="53" cy="73" rx="2.8" ry="2.2" fill="#2a9449"/>
-                <ellipse cx="67" cy="73" rx="2.8" ry="2.2" fill="#2a9449"/>
-
-                <!-- MOUTH CLOSED -->
-                <g id="mouthClosed">
-                  <path d="M 43 90 Q 60 105 77 90" fill="none" stroke="#2a9449" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="43" cy="90" r="2.5" fill="#2a9449" opacity="0.45"/>
-                  <circle cx="77" cy="90" r="2.5" fill="#2a9449" opacity="0.45"/>
-                </g>
-
-                <!-- MOUTH OPEN (no teeth — frogs don't have them) -->
-                <g id="mouthOpen" display="none">
-                  <path d="M 43 90 Q 60 112 77 90 Q 60 93 43 90 Z" fill="#8b1a1a"/>
-                  <path d="M 43 90 Q 60 112 77 90" fill="none" stroke="#2a9449" stroke-width="2.5" stroke-linecap="round"/>
-                  <ellipse cx="60" cy="103" rx="7" ry="4" fill="#b52a2a" opacity="0.6"/>
-                </g>
-              </svg>
-            </div>
-            <div class="hover-hint">
-              <svg viewBox="0 0 80 50" width="80" height="50" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 70 10 Q 40 5 18 35" stroke="#9ca3af" stroke-width="1.5" fill="none" stroke-dasharray="4 3" stroke-linecap="round"/>
-                <polygon points="12,40 22,32 24,44" fill="#9ca3af"/>
-              </svg>
-              <span class="hover-text">Hover me!</span>
+          <div class="easter-egg" id="robotEgg">
+            <div class="robot-wrap" id="robotWrap">
+              <img
+                src="/images/featured/panda-hero.png"
+                alt="A seated panda illustration"
+                width="132"
+                height="132"
+                loading="eager"
+              />
             </div>
           </div>
 
-          <!-- Hero -->
-          <section class="hero">
+          <section class="hero" id="about-me">
             <h1 class="hero-name">
-              {name}
+              {`Hey, I'm ${name}`}
               <span class="hero-phonetic">{phonetic}</span>
             </h1>
-            <p class="hero-bio" set:html={bio} />
+            <p class="hero-bio">{bio}</p>
+            <p class="hero-current">{currentWork}</p>
+
             <div class="cta-group">
-              {links.map(l => (
-                <a class="cta-btn" href={l.href} target={l.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer">
-                  {l.label} ↗
+              {links.map((link) => (
+                <a
+                  class="cta-btn"
+                  href={link.href}
+                  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noreferrer"
+                >
+                  {link.label} ↗
                 </a>
               ))}
             </div>
           </section>
 
-          <!-- Work -->
-          <section>
-            <p class="section-label">Work</p>
-            <div class="project-list">
-              {projects.map(p => (
-                <a class="project-row" href={p.href} target="_blank" rel="noopener noreferrer">
-                  <span class="project-name">{p.name}</span>
-                  <hr class="project-divider" />
-                  <div class="badge-group">
-                    {p.badges.map(b => (
-                      <span class={`badge badge-${b.style}`}>{b.label}</span>
+          <section class="projects-section" aria-labelledby="projects-heading">
+          </section>
+
+          <section class="work-listing" aria-labelledby="work-heading">
+            <div class="work-header">
+              <h2 class="work-title" id="work-heading">Projects</h2>
+            </div>
+
+            <div class="work-rows">
+              {workItems.map((item) => (
+                <div class="work-row">
+                  {item.href ? (
+                    <a class="work-name work-name-link" href={item.href}>{item.name}</a>
+                  ) : (
+                    <span class="work-name">{item.name}</span>
+                  )}
+                  <div class="work-line" aria-hidden="true">
+                    <span class="work-dot"></span>
+                    <span class="work-dashes"></span>
+                    <span class="work-dot"></span>
+                  </div>
+                  <div class="work-tags">
+                    {item.tags.map((tag) => (
+                      <span class={`work-tag work-tag-${tag.style}`}>{tag.label}</span>
                     ))}
                   </div>
-                </a>
+                </div>
               ))}
             </div>
           </section>
 
+          <section class="feature-cards" aria-label="Featured visuals">
+            {featureCards.map((card) => (
+              <article class="feature-card">
+                <img class="feature-card-art" src={card.imageSrc} alt={card.imageAlt} loading="lazy" />
+
+                <div class="feature-card-body">
+                  <h3 class="feature-card-title">{card.title}</h3>
+                  <a class="feature-card-cta" href={card.href}>{card.cta} ↗</a>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <section class="notes-app" aria-labelledby="notes-heading">
+            <div class="notes-header">
+              <div>
+                <h2 class="notes-title" id="notes-heading">Blogs</h2>
+              </div>
+            </div>
+
+            <div class="notes-search" aria-hidden="true">
+              <span class="notes-search-icon">⌕</span>
+              <span class="notes-search-text">Search notes</span>
+            </div>
+
+            <div class="notes-group">
+              <div class="notes-group-heading">
+                <span>On Site</span>
+                <span>{blogNotes.length}</span>
+              </div>
+
+              <div class="notes-list">
+                {blogNotes.map((note) => (
+                  <a class="notes-row" href={note.href}>
+                    <div class="notes-row-main">
+                      <span class="notes-folder-icon" aria-hidden="true">⌂</span>
+                      <div class="notes-row-copy">
+                        <span class="notes-row-title">{note.title}</span>
+                        <span class="notes-row-meta">{note.meta}</span>
+                      </div>
+                    </div>
+
+                    <div class="notes-row-side">
+                      <span class="notes-row-value">{note.value}</span>
+                      <span class="notes-row-arrow" aria-hidden="true">›</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </main>
     </div>
 
-    <!-- Tongue overlay (full-screen, pointer-events: none) -->
-    <div id="tongueOverlay" style="position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden;">
-      <svg id="tongueSvg" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-        <path id="tonguePath" fill="none" stroke="#fb7185" stroke-linecap="round"/>
-        <circle id="tongueTip" cx="0" cy="0" r="0" fill="#fb7185"/>
-      </svg>
-    </div>
-
     <script is:inline>
-      // Frog — eye tracking + body follow
-      const egg  = document.getElementById('frogEgg');
-      const frog = document.getElementById('frogWrap');
-      const svg  = document.getElementById('frogSvg');
+      const egg = document.getElementById("robotEgg");
+      const robot = document.getElementById("robotWrap");
 
-      // Eye data: center in SVG viewBox space
-      const eyes = [
-        { pupil: document.getElementById('pupilL'),  shine: document.getElementById('shineL'),  shine2: document.getElementById('shine2L'),  ox: 36, oy: 50 },
-        { pupil: document.getElementById('pupilR'),  shine: document.getElementById('shineR'),  shine2: document.getElementById('shine2R'),  ox: 84, oy: 50 },
-      ];
-
-      function screenToSVG(x, y) {
-        const pt = svg.createSVGPoint();
-        pt.x = x; pt.y = y;
-        return pt.matrixTransform(svg.getScreenCTM().inverse());
-      }
-
-      function movePupils(mx, my) {
-        const sp = screenToSVG(mx, my);
-        const maxMove = 5;
-        eyes.forEach(({ pupil, shine, shine2, ox, oy }) => {
-          const dx   = sp.x - ox;
-          const dy   = sp.y - oy;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const move = Math.min(dist * 0.25, maxMove);
-          const px   = (dx / dist) * move;
-          const py   = (dy / dist) * move;
-          pupil.setAttribute('cx', ox + px);
-          pupil.setAttribute('cy', oy + py);
-          shine.setAttribute('cx',  ox + px + 5);
-          shine.setAttribute('cy',  oy + py - 7);
-          shine2.setAttribute('cx', ox + px + 9);
-          shine2.setAttribute('cy', oy + py - 2);
-        });
-      }
-
-      frog.addEventListener('mouseenter', () => egg.classList.add('active'));
-      frog.addEventListener('mouseleave', () => {
-        egg.classList.remove('active');
-        frog.style.transform = 'translate(0px,0px) rotate(0deg)';
+      robot.addEventListener("mouseenter", () => egg.classList.add("active"));
+      robot.addEventListener("mouseleave", () => {
+        egg.classList.remove("active");
+        robot.style.transform = "translate(0px, 0px) rotate(0deg)";
       });
 
-      document.addEventListener('mousemove', (e) => {
-        movePupils(e.clientX, e.clientY);
-        if (!egg.classList.contains('active')) return;
-        const rect = frog.getBoundingClientRect();
-        const cx   = rect.left + rect.width  / 2;
-        const cy   = rect.top  + rect.height / 2;
-        const dx   = e.clientX - cx;
-        const dy   = e.clientY - cy;
-        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
-        const mx   = (dx / dist) * Math.min(dist * 0.35, 18);
-        const my   = (dy / dist) * Math.min(dist * 0.35, 18);
-        const rot  = (dx / dist) * 8;
-        frog.style.transform = `translate(${mx}px,${my}px) rotate(${rot}deg)`;
+      document.addEventListener("mousemove", (event) => {
+        if (!egg.classList.contains("active")) return;
+
+        const rect = robot.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = event.clientX - cx;
+        const dy = event.clientY - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const mx = (dx / dist) * Math.min(dist * 0.2, 12);
+        const my = (dy / dist) * Math.min(dist * 0.2, 12);
+        const rot = (dx / dist) * 5;
+        robot.style.transform = `translate(${mx}px, ${my}px) rotate(${rot}deg)`;
       });
     </script>
 
-    <script is:inline>
-      const btn  = document.getElementById('themeToggle');
-      const icon = document.getElementById('themeIcon');
-
-      function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        icon.textContent = theme === 'dark' ? '●' : '○';
-      }
-
-      // Sync icon on load
-      applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
-
-      btn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        applyTheme(current === 'dark' ? 'light' : 'dark');
-      });
-    </script>
-
-    <script is:inline>
-      // Tongue animation
-      (function () {
-        const tonguePath = document.getElementById('tonguePath');
-        const tongueTip  = document.getElementById('tongueTip');
-        let animating = false;
-
-        function svgToScreen(svgEl, x, y) {
-          const pt = svgEl.createSVGPoint();
-          pt.x = x; pt.y = y;
-          return pt.matrixTransform(svgEl.getScreenCTM());
-        }
-
-        function animateTongue(sx, sy, tx, ty) {
-          if (animating) return;
-          animating = true;
-
-          const EXTEND  = 160;
-          const HOLD    = 90;
-          const RETRACT = 200;
-          const TOTAL   = EXTEND + HOLD + RETRACT;
-          const t0 = performance.now();
-
-          // Perpendicular curve offset so tongue arcs naturally
-          const len   = Math.sqrt((tx-sx)**2 + (ty-sy)**2) || 1;
-          const perpX = -(ty-sy) / len;
-          const perpY =  (tx-sx) / len;
-          const arc   = Math.min(len * 0.18, 40);
-
-          function easeOut(t) { return 1 - (1-t)**3; }
-          function easeIn(t)  { return t**3; }
-
-          function frame(now) {
-            const elapsed = now - t0;
-            let p;
-
-            if (elapsed < EXTEND) {
-              p = easeOut(elapsed / EXTEND);
-            } else if (elapsed < EXTEND + HOLD) {
-              p = 1;
-            } else {
-              p = 1 - easeIn(Math.min((elapsed - EXTEND - HOLD) / RETRACT, 1));
-            }
-
-            const ex  = sx + (tx - sx) * p;
-            const ey  = sy + (ty - sy) * p;
-            const cpx = (sx + ex) / 2 + perpX * arc * Math.sin(p * Math.PI);
-            const cpy = (sy + ey) / 2 + perpY * arc * Math.sin(p * Math.PI);
-
-            tonguePath.setAttribute('d', `M ${sx} ${sy} Q ${cpx} ${cpy} ${ex} ${ey}`);
-            tonguePath.setAttribute('stroke-width', 4 + p * 5);
-            tongueTip.setAttribute('cx', ex);
-            tongueTip.setAttribute('cy', ey);
-            tongueTip.setAttribute('r',  p * 9);
-
-            if (elapsed < TOTAL) {
-              requestAnimationFrame(frame);
-            } else {
-              tonguePath.setAttribute('d', '');
-              tongueTip.setAttribute('r', 0);
-              // Close mouth
-              document.getElementById('mouthOpen').setAttribute('display', 'none');
-              document.getElementById('mouthClosed').setAttribute('display', '');
-              animating = false;
-            }
-          }
-
-          // Open mouth before tongue shoots out
-          document.getElementById('mouthClosed').setAttribute('display', 'none');
-          document.getElementById('mouthOpen').setAttribute('display', '');
-          requestAnimationFrame(frame);
-        }
-
-        document.addEventListener('click', (e) => {
-          if (e.target.closest('a, button')) return;
-          const frogSvg = document.getElementById('frogSvg');
-          if (!frogSvg) return;
-          // Mouth center in SVG viewBox
-          const mouth = svgToScreen(frogSvg, 60, 98);
-          animateTongue(mouth.x, mouth.y, e.clientX, e.clientY);
-        });
-      })();
-    </script>
   </body>
 </html>

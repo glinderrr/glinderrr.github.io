@@ -1,0 +1,271 @@
+---
+const studioUpdated = "April 18, 2026 at 7:10 PM";
+
+const studioIllustrations = [
+  {
+    src: "/images/featured/IMG_0694.jpg",
+    alt: "Illustration of a sleek pair of sunglasses.",
+  },
+  {
+    src: "/images/featured/BOX.jpg",
+    alt: "Illustration featuring a sculptural box study.",
+  },
+  {
+    src: "/images/featured/state-of-the-art.jpg",
+    alt: "Editorial illustration titled State of the Art.",
+  },
+  {
+    src: "/images/featured/Bar.jpg",
+    alt: "Illustration of a bar interior composition.",
+  },
+  {
+    src: "/images/featured/Chair.jpg",
+    alt: "Illustration focused on a chair object study.",
+  },
+  {
+    src: "/images/featured/IMG_0693.jpg",
+    alt: "Illustration showing a product sketch composition.",
+  },
+  {
+    src: "/images/featured/sunset.jpg",
+    alt: "Warm sunset illustration.",
+  },
+  {
+    src: "/images/featured/night-chill.jpg",
+    alt: "Night scene illustration with a calm mood.",
+  },
+  {
+    src: "/images/featured/take-a-dip.jpg",
+    alt: "Illustration titled Take a Dip.",
+  },
+  {
+    src: "/images/featured/Vibes.jpg",
+    alt: "Poster-style illustration titled Vibes.",
+  },
+  {
+    src: "/images/featured/IMG_8665.jpg",
+    alt: "Illustration from a visual study series.",
+  },
+  {
+    src: "/images/featured/dnd.jpg",
+    alt: "Illustration titled DND.",
+  },
+  {
+    src: "/images/featured/TV.jpg",
+    alt: "Illustration of a television object study.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio | Glinder</title>
+    <meta
+      name="description"
+      content="A masonry-style gallery of Glinder's illustration work."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <style>
+      :root {
+        --studio-window: rgba(255, 255, 255, 0.84);
+        --studio-pane: rgba(255, 255, 255, 0.88);
+        --studio-divider: rgba(15, 23, 42, 0.08);
+        --studio-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --studio-window: rgba(49, 49, 49, 0.96);
+          --studio-pane: rgba(50, 50, 50, 0.98);
+          --studio-divider: rgba(232, 216, 201, 0.1);
+          --studio-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      body {
+        min-height: 100vh;
+      }
+
+      .studio-page {
+        min-height: 100vh;
+        padding: clamp(1rem, 2vw, 2rem);
+      }
+
+      .studio-shell {
+        width: min(100%, 1100px);
+        margin: 0 auto;
+        min-height: calc(100vh - clamp(2rem, 4vw, 4rem));
+        border: 1px solid var(--studio-divider);
+        border-radius: 30px;
+        background: var(--studio-window);
+        box-shadow: var(--studio-shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .studio-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1.35rem 1.35rem 0;
+      }
+
+      .studio-traffic {
+        display: flex;
+        gap: 0.65rem;
+      }
+
+      .studio-traffic a,
+      .studio-traffic span {
+        display: block;
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 999px;
+      }
+
+      .studio-traffic a {
+        background: #ff5f57;
+      }
+
+      .studio-traffic span:nth-child(2) {
+        background: #febc2e;
+      }
+
+      .studio-traffic span:nth-child(3) {
+        background: #28c840;
+      }
+
+      .studio-reader {
+        padding: 1rem clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 3rem);
+        background: var(--studio-pane);
+      }
+
+      .studio-reader-inner {
+        width: min(100%, 1100px);
+        margin: 0 auto;
+      }
+
+      .studio-reader-date {
+        margin-bottom: 1.5rem;
+        color: var(--muted);
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .studio-title {
+        margin-bottom: 4rem;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+        text-transform: lowercase;
+        text-align: center;
+      }
+
+      .studio-gallery-wrap {
+        padding-top: 0;
+      }
+
+      .studio-gallery {
+        column-count: 4;
+        column-gap: 1rem;
+      }
+
+      .studio-card {
+        break-inside: avoid;
+        margin: 0 0 1rem;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+
+      .studio-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        border-radius: 14px;
+      }
+
+      @media (max-width: 767px) {
+        .studio-page {
+          padding: 0;
+        }
+
+        .studio-shell {
+          min-height: 100vh;
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .studio-topbar {
+          padding: 1rem 1rem 0;
+        }
+
+        .studio-reader {
+          min-height: 100vh;
+          padding: 1rem 1rem 2rem;
+        }
+
+        .studio-reader-date {
+          margin-bottom: 1rem;
+          text-align: left;
+        }
+
+        .studio-title {
+          margin-bottom: 3rem;
+          text-align: left;
+        }
+
+        .studio-gallery-wrap {
+          padding-top: 0;
+        }
+
+        .studio-gallery {
+          column-count: 2;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <main class="studio-page">
+      <div class="studio-shell">
+        <div class="studio-topbar">
+          <div class="studio-traffic">
+            <a href="/" aria-label="Close and go home"></a>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <article class="studio-reader">
+          <div class="studio-reader-inner">
+            <p class="studio-reader-date">{studioUpdated}</p>
+            <h1 class="studio-title">studio</h1>
+
+            <div class="studio-gallery-wrap">
+              <section class="studio-gallery" aria-label="Studio illustration gallery">
+                {studioIllustrations.map((piece) => (
+                  <figure class="studio-card">
+                    <img src={piece.src} alt={piece.alt} loading="lazy" />
+                  </figure>
+                ))}
+              </section>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

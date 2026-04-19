@@ -1,0 +1,292 @@
+---
+const signImages = [
+  { src: "/images/featured/IMG_2353.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_3883-scaled.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_5993.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_2797-scaled.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_2382.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_1539.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_5624-scaled.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_1396.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_1338-1-scaled.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_1041.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_6354.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_0886.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_6316.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/IMG_6287.jpeg", alt: "Greywiththesign gallery image." },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greywiththesign | Glinder</title>
+    <meta
+      name="description"
+      content="A local gallery page for Greywiththesign."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <style>
+      :root {
+        --page-window: rgba(255, 255, 255, 0.84);
+        --page-pane: rgba(255, 255, 255, 0.88);
+        --page-divider: rgba(15, 23, 42, 0.08);
+        --page-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --page-window: rgba(49, 49, 49, 0.96);
+          --page-pane: rgba(50, 50, 50, 0.98);
+          --page-divider: rgba(232, 216, 201, 0.1);
+          --page-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      body {
+        min-height: 100vh;
+        overflow-x: clip;
+      }
+
+      html {
+        overflow-x: clip;
+      }
+
+      .sign-page {
+        min-height: 100vh;
+        padding: clamp(1rem, 2vw, 2rem);
+        overflow-x: clip;
+      }
+
+      .sign-shell {
+        width: min(100%, 1100px);
+        margin: 0 auto;
+        min-height: calc(100vh - clamp(2rem, 4vw, 4rem));
+        border: 1px solid var(--page-divider);
+        border-radius: 30px;
+        background: var(--page-window);
+        box-shadow: var(--page-shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .sign-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1.35rem 1.35rem 0.9rem;
+      }
+
+      .sign-traffic {
+        display: flex;
+        gap: 0.65rem;
+      }
+
+      .sign-traffic a,
+      .sign-traffic span {
+        display: block;
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 999px;
+      }
+
+      .sign-traffic a { background: #ff5f57; }
+      .sign-traffic span:nth-child(2) { background: #febc2e; }
+      .sign-traffic span:nth-child(3) { background: #28c840; }
+
+      .sign-reader {
+        padding: 1.35rem clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 3rem);
+        background: var(--page-pane);
+      }
+
+      .sign-reader-inner {
+        width: min(100%, 1100px);
+        margin: 0 auto;
+      }
+
+      .sign-header {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: start;
+        margin-bottom: 3rem;
+      }
+
+      .sign-avatar {
+        width: 190px;
+        height: 190px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: #ffd938;
+        justify-self: start;
+      }
+
+      .sign-avatar img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .sign-copy {
+        display: grid;
+        gap: 1.35rem;
+      }
+
+      .sign-handle {
+        color: var(--fg);
+        font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.2rem);
+        font-weight: 700;
+        line-height: 1.5;
+      }
+
+      .sign-summary {
+        color: var(--muted);
+        font-size: clamp(1rem, 0.9rem + 0.45vw, 1.35rem);
+        font-weight: 600;
+        line-height: 1.65;
+      }
+
+      .sign-gallery {
+        column-count: 4;
+        column-gap: 1rem;
+        column-fill: balance;
+      }
+
+      .sign-card {
+        break-inside: avoid;
+        margin: 0 0 1rem;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+
+      .sign-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+      }
+
+      @media (max-width: 1024px) {
+        .sign-gallery {
+          column-count: 3;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .sign-page {
+          padding: 0;
+        }
+
+        .sign-shell {
+          min-height: 100vh;
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .sign-topbar {
+          padding: 1rem 1rem 0.75rem;
+        }
+
+        .sign-reader {
+          min-height: 100vh;
+          padding: 1.15rem 1rem 2rem;
+        }
+
+        .sign-header {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          margin-bottom: 2rem;
+        }
+
+        .sign-avatar {
+          width: min(180px, 52vw);
+          height: min(180px, 52vw);
+        }
+
+        .sign-copy {
+          gap: 1rem;
+        }
+
+        .sign-summary {
+          font-size: 1rem;
+          line-height: 1.65;
+        }
+
+        .sign-gallery {
+          column-count: 2;
+          column-gap: 0.85rem;
+        }
+
+        .sign-card {
+          margin: 0 0 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .sign-gallery {
+          column-count: 2;
+          column-gap: 0.75rem;
+        }
+
+        .sign-card {
+          margin: 0 0 0.75rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="sign-page">
+      <div class="sign-shell">
+        <div class="sign-topbar">
+          <div class="sign-traffic">
+            <a href="/" aria-label="Close and go home"></a>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <article class="sign-reader">
+          <div class="sign-reader-inner">
+            <section class="sign-header" aria-label="Greywiththesign introduction">
+              <div class="sign-avatar">
+                <img src="/images/featured/sssssssssss.jpg" alt="Greywiththesign profile image." />
+              </div>
+
+              <div class="sign-copy">
+                <p class="sign-handle">
+                  @greywiththesign - Not all heroes wear capes, some just hold signs
+                </p>
+                <p class="sign-summary">
+                  It’s just me, a sign, and the undeniable urge to state the obvious. Whether it’s
+                  everyday struggles, things I find funny, or just random thoughts that pop into my
+                  head, I’m here to hold them up for the world to see, literally. No hidden agenda,
+                  just a girl, some courage, and pure unfiltered cardboard wisdom.
+                </p>
+              </div>
+            </section>
+
+            <section class="sign-gallery" aria-label="Greywiththesign gallery">
+              {signImages.map((image) => (
+                <figure class="sign-card">
+                  <img src={image.src} alt={image.alt} loading="lazy" />
+                </figure>
+              ))}
+            </section>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

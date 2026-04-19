@@ -1,0 +1,1207 @@
+---
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greysports | Glinder</title>
+    <meta
+      name="description"
+      content="Greysports case study about designing a more interactive, personalized sports experience."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        --bg: #fdfff4;
+        --text: #333333;
+        --muted: #545454;
+        --line: #e4e8d9;
+        --surface: #ffffff;
+        --radius-lg: 16px;
+        --radius-md: 12px;
+        --radius-sm: 10px;
+        --shadow: 0 10px 24px rgba(20, 20, 20, 0.07);
+        --max-width: 920px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--bg);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .wrap {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 24px 20px 48px;
+        font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+        color: var(--text);
+      }
+
+      .section {
+        margin-top: clamp(24px, 3vw, 34px);
+        scroll-margin-top: 90px;
+        border-top: 1px solid var(--line);
+        padding-top: clamp(18px, 2.4vw, 24px);
+      }
+
+      .wrap > .section:first-child {
+        border-top: 0;
+        padding-top: 0;
+        margin-top: 0;
+      }
+
+      .kicker {
+        display: inline-block;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .top-nav {
+        margin-bottom: 8px;
+      }
+
+      .top-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.9rem;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 1px solid #d5dcc4;
+        padding-bottom: 2px;
+      }
+
+      .top-nav a:hover {
+        color: var(--text);
+        border-bottom-color: #333;
+      }
+
+      .hero-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .hanging-top-mockup {
+        max-width: 300px;
+        justify-self: end;
+        margin-top: -14px;
+        transform: rotate(-4deg);
+        filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.14));
+      }
+
+      .hanging-top-mockup img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+      }
+
+      .title {
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 0 0 10px;
+        max-width: 14ch;
+      }
+
+      .subtitle {
+        font-size: clamp(1.06rem, 2vw, 1.25rem);
+        max-width: 60ch;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .h2 {
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        margin: 0 0 12px;
+      }
+
+      .lead {
+        font-size: clamp(1rem, 1.8vw, 1.1rem);
+        max-width: 72ch;
+        margin: 0;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .overview-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: 16px;
+        align-items: center;
+      }
+
+      .problem-goals-layout {
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: left;
+      }
+
+      .card {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        position: relative;
+      }
+
+      .card[data-label]::after {
+        display: none;
+      }
+
+      .list {
+        list-style: none;
+        margin: 10px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .list li {
+        padding-left: 18px;
+        position: relative;
+      }
+
+      .list li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #1f1f1f;
+        position: absolute;
+        left: 0;
+        top: 0.62em;
+      }
+
+      .decision {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+        align-items: center;
+        gap: 14px;
+        margin-top: clamp(16px, 2.4vw, 24px);
+        padding-top: clamp(16px, 2vw, 20px);
+        border-top: 1px solid var(--line);
+      }
+
+      .decision h3 {
+        font-size: clamp(1.15rem, 2vw, 1.45rem);
+        line-height: 1.3;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+
+      .decision p {
+        margin: 0 0 8px;
+        max-width: 62ch;
+      }
+
+      .figure-wrap {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 6px;
+        align-items: center;
+      }
+
+      .nav-figure-wrap {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 6px;
+        align-items: start;
+      }
+
+      .nav-figure-wrap .nav-final {
+        grid-column: 1 / -1;
+        justify-self: center;
+      }
+
+      .nav-figure-wrap figcaption {
+        text-align: center;
+      }
+
+      figure {
+        margin: 0;
+        border-radius: var(--radius-md);
+        border: 0;
+        background: transparent;
+        overflow: hidden;
+        position: relative;
+        transition: transform 220ms ease, box-shadow 220ms ease;
+        max-width: 198px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      figure:hover,
+      figure:focus-within {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 36px rgba(30, 30, 30, 0.12);
+      }
+
+      figure img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        aspect-ratio: auto;
+        background: transparent;
+      }
+
+      .hero-figure img {
+        aspect-ratio: 1080 / 1110;
+        object-fit: cover;
+      }
+
+      .hero-figure {
+        max-width: 380px;
+        width: 100%;
+      }
+
+      .screen-figure img {
+        aspect-ratio: 402 / 874;
+        object-fit: cover;
+      }
+
+      .wide-figure {
+        max-width: 280px;
+        width: 100%;
+      }
+
+      .tiny-figure {
+        width: 370px;
+        max-width: 100%;
+      }
+
+      .tiny-figure img {
+        width: 370px;
+        max-width: 100%;
+        height: 54px;
+        object-fit: contain;
+      }
+
+      .tiny-figure-wrap {
+        display: flex;
+        gap: 10px;
+        margin-top: 8px;
+        flex-wrap: nowrap;
+      }
+
+      figure figcaption {
+        font-size: 0.82rem;
+        color: #4f4f4f;
+        padding: 8px 10px 10px;
+      }
+
+      figure[data-hover]::before {
+        content: attr(data-hover);
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(17, 17, 17, 0.86);
+        color: #fff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.73rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity 180ms ease, transform 180ms ease;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      figure[data-hover]:hover::before,
+      figure[data-hover]:focus-within::before {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .quote {
+        border-left: 3px solid #1f1f1f;
+        padding-left: 14px;
+        margin: 16px 0 0;
+        font-weight: 500;
+      }
+
+      .steps {
+        counter-reset: step;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+
+      .steps li {
+        background: #ffffff;
+        border: 1px solid #e4e8d9;
+        border-radius: var(--radius-sm);
+        padding: 12px 14px 12px 46px;
+        position: relative;
+        max-width: 460px;
+      }
+
+      .steps li::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: 12px;
+        top: 11px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #1f1f1f;
+        color: #fff;
+        font-size: 0.82rem;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+      }
+
+      .community-mockups {
+        display: contents;
+      }
+
+      .mockups-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 10px;
+        margin-top: 10px;
+        align-items: start;
+        justify-content: flex-start;
+        padding-bottom: 4px;
+        scrollbar-width: thin;
+      }
+
+      .mockups-grid figure {
+        max-width: 260px;
+        width: 260px;
+        flex: 0 0 260px;
+      }
+
+      .post-next-steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+        justify-items: center;
+      }
+
+      .post-next-steps-grid figure {
+        max-width: 190px;
+        width: 100%;
+      }
+
+      .designed-by {
+        margin-top: 24px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-size: 0.92rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .designed-by a {
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid #cfd6bf;
+      }
+
+      .designed-by a:hover {
+        border-bottom-color: #333;
+      }
+
+      .cursor-pill {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -170%);
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 140ms ease, transform 140ms ease;
+        background: rgba(17, 17, 17, 0.9);
+        color: #fff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .cursor-pill.is-visible {
+        opacity: 1;
+        transform: translate(-50%, -190%);
+      }
+
+      .meta-row {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .meta-chip {
+        font-size: 0.8rem;
+        border: 1px solid #d8ddcb;
+        background: #f8fbef;
+        border-radius: 999px;
+        padding: 5px 9px;
+        color: #4b4b4b;
+      }
+
+      @media (max-width: 980px) {
+        .hero-head {
+          grid-template-columns: minmax(0, 1fr) 260px;
+          align-items: start;
+          gap: 10px;
+        }
+
+        .hanging-top-mockup {
+          justify-self: end;
+          margin-top: -6px;
+          max-width: 240px;
+        }
+
+        .overview-layout,
+        .community-mockups,
+        .decision {
+          grid-template-columns: 1fr;
+        }
+
+        .figure-wrap,
+        .nav-figure-wrap {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .nav-figure-wrap .nav-final {
+          grid-column: 1 / -1;
+        }
+
+        .title {
+          max-width: 16ch;
+        }
+
+        .tiny-figure-wrap {
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 10px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .tiny-figure {
+          width: 370px;
+          max-width: none;
+          flex: 0 0 auto;
+        }
+
+        .tiny-figure img {
+          width: 370px;
+          height: 54px;
+          object-fit: contain;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .wrap {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        .card {
+          border-radius: 18px;
+        }
+
+        .hero-head {
+          grid-template-columns: minmax(0, 1fr) 220px;
+          gap: 8px;
+        }
+
+        .hanging-top-mockup {
+          max-width: 210px;
+          margin-top: -2px;
+        }
+
+        .tiny-figure-wrap {
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 10px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .tiny-figure {
+          width: 340px;
+          max-width: none;
+          flex: 0 0 auto;
+        }
+
+        .tiny-figure img {
+          width: 340px;
+          height: 50px;
+          object-fit: contain;
+        }
+
+        .figure-wrap,
+        .nav-figure-wrap {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .screen-figure img {
+          aspect-ratio: 402 / 874;
+        }
+
+        .hero-figure img {
+          aspect-ratio: 1080 / 1110;
+        }
+      }
+
+      #gs-wrap.dark-mode {
+        --bg: #101010;
+        --text: #ffffff;
+        --muted: #b0b0b0;
+        --line: #404040;
+        --surface: #2d2d2d;
+      }
+
+      #gs-wrap {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        background: var(--bg);
+      }
+
+      #gs-wrap.dark-mode .steps li {
+        background: #2d2d2d;
+        border-color: #404040;
+        color: #ffffff;
+      }
+
+      #gs-wrap.dark-mode .steps li::before {
+        background: #ffffff;
+        color: #000000;
+      }
+
+      #gs-wrap.dark-mode .list li::before {
+        background: #ffffff;
+      }
+
+      #gs-wrap.dark-mode figure figcaption {
+        color: #b0b0b0;
+      }
+
+      #gs-wrap.dark-mode .meta-chip {
+        background: #2d2d2d;
+        border-color: #404040;
+        color: #b0b0b0;
+      }
+
+      #gs-wrap.dark-mode .quote {
+        border-left-color: #ffffff;
+      }
+
+      #gs-wrap.dark-mode .top-nav a {
+        border-bottom-color: #404040;
+      }
+
+      #gs-wrap.dark-mode .top-nav a:hover {
+        color: #ffffff;
+        border-bottom-color: #ffffff;
+      }
+
+      #gs-wrap.dark-mode .designed-by a {
+        border-bottom-color: #404040;
+      }
+
+      #gs-wrap.dark-mode .designed-by a:hover {
+        border-bottom-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gs-wrap">
+      <main class="wrap" aria-label="Greysports case study">
+        <header class="section" aria-labelledby="hero-title">
+          <nav class="top-nav" aria-label="Back navigation">
+            <a href="/">← Back home</a>
+          </nav>
+          <div class="hero-head">
+            <div>
+              <p class="kicker">Case Study</p>
+              <h1 class="title" id="hero-title">Greysports</h1>
+              <p class="subtitle">Designing a more interactive, personalized sports experience.</p>
+              <div class="meta-row" aria-label="Project metadata">
+                <span class="meta-chip">Role: UX/UI Design</span>
+                <span class="meta-chip">Designed by a team of 2 creatives</span>
+                <span class="meta-chip">Platform: Mobile App</span>
+              </div>
+            </div>
+            <figure class="hanging-top-mockup" aria-label="Top showcase mockup">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/HandmockupGS2-scaled.png"
+                alt="Greysports top hanging mockup"
+                loading="eager"
+              />
+            </figure>
+          </div>
+        </header>
+
+        <section class="section overview-layout" aria-labelledby="overview-heading" data-section-pill="Overview">
+          <article class="card" data-label="Overview">
+            <h2 class="h2" id="overview-heading">Overview</h2>
+            <p class="lead">
+              Greysports is a mobile app concept designed for highly engaged sports fans who want
+              more than just scores. While existing sports platforms prioritize information delivery,
+              Greysports explores how personalization and community can coexist with live sports
+              consumption.
+            </p>
+            <p class="lead" style="margin-top: 12px;">
+              Our goal was to design an experience that makes it easy to watch games, discover
+              content, and engage with other fans without overwhelming the user.
+            </p>
+          </article>
+          <figure class="hero-figure" data-hover="Hero Mockup">
+            <img
+              src="https://ahglinder.com/wp-content/uploads/2026/02/mainproductmockup.gif"
+              alt="Greysports hero screen mockup"
+              loading="lazy"
+            />
+            <figcaption>Main product direction mockup.</figcaption>
+          </figure>
+        </section>
+
+        <section
+          class="section problem-goals-layout"
+          aria-labelledby="problem-heading"
+          data-section-pill="Problem & Goals"
+        >
+          <article class="card" data-label="Problem">
+            <h2 class="h2" id="problem-heading">The Problem</h2>
+            <p>
+              Most mainstream sports apps do two things well: displaying live scores and delivering
+              news/highlights.
+            </p>
+            <p>
+              However, content and conversation are usually separated. Fans switch between apps,
+              watching in one place and discussing in another.
+            </p>
+            <p class="quote">
+              Opportunity: Create one unified experience where live content and community
+              interaction feel seamlessly connected.
+            </p>
+          </article>
+          <article class="card" data-label="Design Goals">
+            <h2 class="h2">Design Goals</h2>
+            <ul class="list">
+              <li>Prioritize live content without clutter.</li>
+              <li>Encourage community interaction.</li>
+              <li>Personalize early to reduce irrelevant content.</li>
+              <li>Maintain clarity despite feature density.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="section" aria-labelledby="decisions-heading" data-section-pill="Key Decisions">
+          <h2 class="h2" id="decisions-heading">Key Design Decisions</h2>
+
+          <article class="card decision" data-label="Onboarding">
+            <div>
+              <h3>1) Reducing Friction in Onboarding</h3>
+              <p>
+                We introduced a <strong>Continue as Guest</strong> option so users can explore
+                before creating an account. This reduces first-launch abandonment and builds trust
+                before requesting data.
+              </p>
+              <p><strong>Intentional CTA Labeling</strong></p>
+              <p>
+                Instead of generic "Next" buttons, we labeled each action by what comes next:
+                <strong>Next: Personalization</strong> and <strong>Next: Get Started</strong>.
+              </p>
+              <ul class="list">
+                <li>Sets clear expectations before users tap.</li>
+                <li>Reduces uncertainty in multi-step onboarding.</li>
+                <li>Improves completion by removing ambiguity.</li>
+                <li>Creates clearer progress and direction.</li>
+              </ul>
+              <p>
+                Onboarding is where users decide if the app feels intuitive or overwhelming.
+                Directional labels make the flow feel guided, not procedural, and while explicit
+                step-labeling is most commonly associated with longer onboarding flows, we chose to
+                apply it here to reinforce clarity and reduce uncertainty from the first
+                interaction.
+              </p>
+            </div>
+            <div class="figure-wrap">
+              <figure class="screen-figure" data-hover="Onboarding Before">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Onboardingbefore-scaled.png"
+                  alt="Onboarding flow exploration screen"
+                  loading="lazy"
+                />
+                <figcaption>Onboarding exploration.</figcaption>
+              </figure>
+              <figure class="screen-figure" data-hover="Onboarding Final">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Onboardingafter-scaled.png"
+                  alt="Onboarding final screen with Continue as Guest option"
+                  loading="lazy"
+                />
+                <figcaption>Final onboarding with lower friction.</figcaption>
+              </figure>
+            </div>
+            <div class="tiny-figure-wrap" aria-label="Onboarding CTA label mockups">
+              <figure class="tiny-figure" data-hover="CTA Label 1">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Buttons.png"
+                  alt="Onboarding button labeled Next Personalization"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="tiny-figure" data-hover="CTA Label 2">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Buttons-1.png"
+                  alt="Onboarding button labeled Next Get Started"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+          </article>
+
+          <article class="card decision" data-label="Navigation">
+            <div>
+              <h3>2) Navigation Iteration &amp; Cognitive Load Reduction</h3>
+              <p>We explored multiple navigation bar structures before landing on the final layout.</p>
+              <p>
+                <strong>Challenge:</strong> Greysports includes live viewing, teams, community,
+                profile, and settings. Too many equal-weight destinations increase cognitive load.
+              </p>
+              <p>
+                <strong>Final approach:</strong> Clear icon hierarchy, consistent spacing/weight,
+                and stronger active-state treatment for fast recognition.
+              </p>
+              <p>
+                The result improves scannability, supports thumb reach, and keeps feature density
+                manageable.
+              </p>
+            </div>
+            <div class="nav-figure-wrap">
+              <figure class="wide-figure" data-hover="Navigation v1">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Navigation-1.png"
+                  alt="Navigation exploration mockup version one"
+                  loading="lazy"
+                />
+                <figcaption>Early navigation option.</figcaption>
+              </figure>
+              <figure class="wide-figure" data-hover="Navigation v2">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Navigation-2.png"
+                  alt="Navigation exploration mockup version two"
+                  loading="lazy"
+                />
+                <figcaption>Second navigation iteration.</figcaption>
+              </figure>
+              <figure class="wide-figure nav-final" data-hover="Navigation Final">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Navigation-final.png"
+                  alt="Final navigation system mockup"
+                  loading="lazy"
+                />
+                <figcaption>Final navigation hierarchy.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="card decision" data-label="Live Games">
+            <div>
+              <h3>3) Live Games: Vertical Scroll to Horizontal Module</h3>
+              <p>
+                <strong>Initial state:</strong> Live games were stacked vertically and competed
+                with the rest of the page.
+              </p>
+              <p>
+                <strong>Problem:</strong> Layout felt heavy, hierarchy weakened, and secondary
+                content was pushed too far down.
+              </p>
+              <p>
+                <strong>Final decision:</strong> Move live games into a horizontal scroll module at
+                the top to feature live content first while preserving vertical space for
+                discovery.
+              </p>
+              <ul class="list">
+                <li>Clearer hierarchy and page rhythm.</li>
+                <li>Better browsing space for updates and content.</li>
+                <li>Familiar streaming behavior for faster comprehension.</li>
+              </ul>
+            </div>
+            <div class="figure-wrap">
+              <figure class="screen-figure" data-hover="Live Games Before">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/watchnowbefore-scaled.png"
+                  alt="Live games in vertical layout before iteration"
+                  loading="lazy"
+                />
+                <figcaption>Before: vertical stack.</figcaption>
+              </figure>
+              <figure class="screen-figure" data-hover="Live Games After">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/watchnowafter-scaled.png"
+                  alt="Live games in horizontal module after iteration"
+                  loading="lazy"
+                />
+                <figcaption>After: horizontal top module.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="card decision" data-label="Primary CTA">
+            <div>
+              <h3>4) Full-Width Primary Action Button (Watch Now / View Full Schedules)</h3>
+              <p>
+                We redesigned the primary action button as full-width to strengthen emphasis and
+                reduce hesitation.
+              </p>
+              <ul class="list">
+                <li>Stronger visual priority for the main action.</li>
+                <li>Larger tap target for accessibility.</li>
+                <li>Clearer intent in a dense interface.</li>
+              </ul>
+              <p>In sports interfaces, clarity beats subtlety.</p>
+            </div>
+            <div class="figure-wrap">
+              <figure class="screen-figure" data-hover="CTA Before">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/watchnowbuttonbefore-scaled.png"
+                  alt="Primary action button before full-width redesign"
+                  loading="lazy"
+                />
+                <figcaption>Before: lower emphasis treatment.</figcaption>
+              </figure>
+              <figure class="screen-figure" data-hover="CTA Final">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/watchnowbuttonafter-scaled.png"
+                  alt="Primary action button after full-width redesign"
+                  loading="lazy"
+                />
+                <figcaption>After: full-width primary action.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="card decision" data-label="Community Feed">
+            <div>
+              <h3>5) Community Feed: Maintaining Visual Continuity</h3>
+              <p>
+                During exploration, we tested white background cards behind each post for stronger
+                separation. We ultimately preferred the more seamless background for the final
+                experience.
+              </p>
+              <p>
+                <strong>Why white cards were not final:</strong> They felt heavier, segmented
+                content, and added unnecessary layering.
+              </p>
+              <p>
+                <strong>Why final approach works:</strong> Lighter flow, stronger continuity, better
+                visual breathing room for sports imagery, and faster scanning via spacing,
+                typography, and subtle dividers, an approach adopted by many top-level designers.
+              </p>
+            </div>
+            <div class="figure-wrap">
+              <figure class="screen-figure" data-hover="White Cards Test">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Communitybefore-scaled.png"
+                  alt="Community feed concept with white post containers"
+                  loading="lazy"
+                />
+                <figcaption>Exploration: white post containers.</figcaption>
+              </figure>
+              <figure class="screen-figure" data-hover="Final Feed">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Communityafter-scaled.png"
+                  alt="Final community feed design without heavy card treatment"
+                  loading="lazy"
+                />
+                <figcaption>Final: seamless feed continuity.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="card decision" data-label="Settings">
+            <div>
+              <h3>6) Settings: Clear Affordance Through Individual Containers</h3>
+              <p>
+                We explored grouped sections, but grouped options reduced interaction clarity and
+                made rows feel less tappable.
+              </p>
+              <p><strong>Final decision:</strong> Each settings option sits inside its own white container.</p>
+              <ul class="list">
+                <li>Clear affordance: each row reads as independently clickable.</li>
+                <li>Faster scanning and easier task completion.</li>
+                <li>Higher touch confidence and less ambiguity.</li>
+              </ul>
+              <p>Settings is task-based; usability takes priority over visual minimalism.</p>
+            </div>
+            <div class="figure-wrap">
+              <figure class="screen-figure" data-hover="Settings Grouped">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Settingsbefore-scaled.png"
+                  alt="Grouped settings layout exploration"
+                  loading="lazy"
+                />
+                <figcaption>Exploration: grouped settings.</figcaption>
+              </figure>
+              <figure class="screen-figure" data-hover="Settings Final">
+                <img
+                  src="https://ahglinder.com/wp-content/uploads/2026/02/Settingsafter-scaled.png"
+                  alt="Final settings layout with individual white containers"
+                  loading="lazy"
+                />
+                <figcaption>Final: individual settings containers.</figcaption>
+              </figure>
+            </div>
+          </article>
+        </section>
+
+        <section class="section" aria-labelledby="mockups-heading" data-section-pill="Mockups">
+          <h2 class="h2" id="mockups-heading">Mockups</h2>
+          <p class="lead">A high-level mock-up presentation of Greysports screens.</p>
+          <div class="mockups-grid">
+            <figure data-hover="Mockup 01">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/HandmockupGS-scaled.png"
+                alt="Greysports hand mockup screen"
+                loading="lazy"
+              />
+              <figcaption>Mockup 1</figcaption>
+            </figure>
+            <figure data-hover="Mockup 02">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/MU.png"
+                alt="Greysports mockup variation one"
+                loading="lazy"
+              />
+              <figcaption>Mockup 2</figcaption>
+            </figure>
+            <figure data-hover="Mockup 03">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/MU2-scaled.png"
+                alt="Greysports mockup variation two"
+                loading="lazy"
+              />
+              <figcaption>Mockup 3</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section grid-2" aria-labelledby="hypothesis-heading" data-section-pill="Hypothesis">
+          <article class="card" data-label="Hypothesis">
+            <h2 class="h2" id="hypothesis-heading">Product Hypothesis</h2>
+            <p>
+              We designed Greysports around one core hypothesis: if live content and community
+              interaction are integrated into one personalized interface, fan engagement time will
+              increase compared to score-only consumption apps.
+            </p>
+            <ul class="list">
+              <li>Early personalization reduces irrelevant content.</li>
+              <li>Horizontal live modules increase watch intent.</li>
+              <li>Full-width primary actions increase interaction clarity.</li>
+              <li>Clean post separation improves readability and scroll depth.</li>
+            </ul>
+          </article>
+          <article class="card" data-label="Metrics">
+            <h2 class="h2">How We Would Measure It</h2>
+            <ol class="steps">
+              <li>Time spent per session.</li>
+              <li>Watch-to-click conversion rate.</li>
+              <li>Community feed scroll depth.</li>
+              <li>Repeat session frequency.</li>
+            </ol>
+          </article>
+        </section>
+
+        <section
+          class="section grid-2"
+          aria-labelledby="reflection-heading"
+          data-section-pill="Reflection & Next Steps"
+        >
+          <article class="card" data-label="Reflection">
+            <h2 class="h2" id="reflection-heading">Reflection &amp; Learnings</h2>
+            <p>
+              One major challenge was balancing feature density with clarity. Sports products are
+              information-heavy by nature, and adding community features can increase cognitive
+              load.
+            </p>
+            <p>
+              Iterating on navigation and layout hierarchy showed us that reducing visual noise is
+              often more impactful than adding more functionality.
+            </p>
+            <p>
+              Another key learning: not every screen needs innovation. Strategic familiarity,
+              especially in Settings, builds trust and usability.
+            </p>
+          </article>
+          <article class="card" data-label="Next Steps">
+            <h2 class="h2">Next Steps</h2>
+            <ul class="list">
+              <li>
+                Run usability tests with real fans to validate navigation clarity and live module
+                discoverability.
+              </li>
+              <li>
+                Experiment with subtle feed micro-interactions that increase engagement without
+                distraction.
+              </li>
+              <li>Design a real-time game discussion mode tied directly to live broadcasts.</li>
+            </ul>
+            <p style="margin-top: 12px;">
+              The next phase would move from concept validation to behavioral optimization.
+            </p>
+          </article>
+        </section>
+
+        <section class="section" aria-labelledby="next-step-screens-heading" data-section-pill="Next Step Screens">
+          <h2 class="h2" id="next-step-screens-heading">More mock-ups of Greysports screens.</h2>
+          <div class="post-next-steps-grid">
+            <figure class="screen-figure" data-hover="Next Screen 01">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/OB1-scaled.png"
+                alt="Next steps concept screen one for Greysports"
+                loading="lazy"
+              />
+              <figcaption>Mockup 4</figcaption>
+            </figure>
+            <figure class="screen-figure" data-hover="Next Screen 02">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/OB2-scaled.png"
+                alt="Next steps concept screen two for Greysports"
+                loading="lazy"
+              />
+              <figcaption>Mockup 5</figcaption>
+            </figure>
+            <figure class="screen-figure" data-hover="Next Screen 03">
+              <img
+                src="https://ahglinder.com/wp-content/uploads/2026/02/OB3-scaled.png"
+                alt="Next steps concept screen three for Greysports"
+                loading="lazy"
+              />
+              <figcaption>Mockup 6</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <footer class="designed-by" aria-label="Design credits">
+          Designed by
+          <a href="https://ahglinder.com" target="_blank" rel="noopener noreferrer">Grey</a>
+          x
+          <a href="https://mariangasinu.com" target="_blank" rel="noopener noreferrer">Meg</a>
+        </footer>
+      </main>
+      <div class="cursor-pill" id="cursor-pill" aria-hidden="true"></div>
+    </div>
+
+    <script>
+      (function () {
+        var pill = document.getElementById("cursor-pill");
+        var sections = document.querySelectorAll("[data-section-pill]");
+        if (!pill || !sections.length || window.matchMedia("(hover: none)").matches) return;
+        var activeLabel = "";
+        function show(label) {
+          activeLabel = label || "";
+          pill.textContent = activeLabel;
+          pill.classList.toggle("is-visible", !!activeLabel);
+        }
+        sections.forEach(function (s) {
+          var label = s.getAttribute("data-section-pill") || "";
+          s.addEventListener("mouseenter", function () {
+            show(label);
+          });
+          s.addEventListener("mouseleave", function () {
+            show("");
+          });
+        });
+        document.addEventListener("mousemove", function (e) {
+          pill.style.left = e.clientX + "px";
+          pill.style.top = e.clientY + "px";
+        });
+      })();
+
+      (function () {
+        var wrap = document.getElementById("gs-wrap");
+        if (!wrap) return;
+        var lastBg = "";
+        function detect() {
+          try {
+            var bg = window.getComputedStyle(document.body).backgroundColor;
+            if (bg === lastBg) {
+              requestAnimationFrame(detect);
+              return;
+            }
+            lastBg = bg;
+            var m = bg.match(/[\d.]+/g);
+            if (!m) {
+              requestAnimationFrame(detect);
+              return;
+            }
+            var a = m[3] !== undefined ? parseFloat(m[3]) : 1;
+            if (a === 0) {
+              requestAnimationFrame(detect);
+              return;
+            }
+            var brightness =
+              (parseFloat(m[0]) * 299 + parseFloat(m[1]) * 587 + parseFloat(m[2]) * 114) / 1000;
+            var isDark = brightness < 128;
+            wrap.classList.toggle("dark-mode", isDark);
+
+            var lightBg = getComputedStyle(wrap).getPropertyValue("--bg").trim() || "#FDFFF4";
+            wrap.style.background = isDark ? "#101010" : lightBg;
+          } catch (e) {
+            // Ignore theme detection errors and keep polling.
+          }
+          requestAnimationFrame(detect);
+        }
+        requestAnimationFrame(detect);
+      })();
+    </script>
+  </body>
+</html>

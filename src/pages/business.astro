@@ -1,0 +1,387 @@
+---
+const noteUpdated = "January 13, 2026 at 12:45 AM";
+
+const businessVideos = [
+  {
+    title: "Greysole short 01",
+    youtubeUrl: "https://www.youtube.com/shorts/7k4JraHWDn8?feature=share",
+  },
+  {
+    title: "Greysole short 02",
+    youtubeUrl: "https://www.youtube.com/shorts/V5An0s3Bh8o?feature=share",
+  },
+  {
+    title: "Greysole short 03",
+    youtubeUrl: "https://www.youtube.com/shorts/zf0xFj5aiJ0?feature=share",
+  },
+  {
+    title: "Greysole short 04",
+    youtubeUrl: "https://www.youtube.com/shorts/AcKQ8gACut4?feature=share",
+  },
+];
+
+function getYoutubeEmbedUrl(url) {
+  const shortMatch = url.match(/shorts\/([^?&/]+)/);
+  const watchMatch = url.match(/[?&]v=([^?&/]+)/);
+  const videoId = shortMatch?.[1] ?? watchMatch?.[1] ?? "";
+  return `https://www.youtube.com/embed/${videoId}`;
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business | Glinder</title>
+    <meta
+      name="description"
+      content="A local page for Glinder's Business writing about Casestody and Greysole."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <style>
+      :root {
+        --notes-window: rgba(255, 255, 255, 0.84);
+        --notes-sidebar: rgba(243, 243, 247, 0.92);
+        --notes-pane: rgba(255, 255, 255, 0.88);
+        --notes-divider: rgba(15, 23, 42, 0.08);
+        --notes-search: #e8e8ed;
+        --notes-preview: #6e6e73;
+        --notes-selected: #f4c542;
+        --notes-selected-text: #1c1c1e;
+        --notes-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --notes-window: rgba(49, 49, 49, 0.96);
+          --notes-sidebar: rgba(54, 54, 54, 0.96);
+          --notes-pane: rgba(50, 50, 50, 0.98);
+          --notes-divider: rgba(232, 216, 201, 0.1);
+          --notes-search: #404040;
+          --notes-preview: rgba(232, 216, 201, 0.64);
+          --notes-selected: #9b7c23;
+          --notes-selected-text: #fff8ea;
+          --notes-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      body {
+        min-height: 100vh;
+      }
+
+      .business-page {
+        min-height: 100vh;
+        padding: clamp(1rem, 2vw, 2rem);
+      }
+
+      .business-shell {
+        width: min(100%, 1100px);
+        margin: 0 auto;
+        min-height: calc(100vh - clamp(2rem, 4vw, 4rem));
+        border: 1px solid var(--notes-divider);
+        border-radius: 30px;
+        background: var(--notes-window);
+        box-shadow: var(--notes-shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .business-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 1.35rem 1.35rem 0;
+      }
+
+      .business-traffic {
+        display: flex;
+        gap: 0.65rem;
+      }
+
+      .business-traffic a,
+      .business-traffic span {
+        display: block;
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 999px;
+      }
+
+      .business-traffic a { background: #ff5f57; }
+      .business-traffic span:nth-child(2) { background: #febc2e; }
+      .business-traffic span:nth-child(3) { background: #28c840; }
+
+      .business-reader {
+        padding: 1rem clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 3rem);
+        background: var(--notes-pane);
+      }
+
+      .business-reader-inner {
+        width: min(100%, 780px);
+        margin: 0 auto;
+      }
+
+      .business-reader-date {
+        margin-bottom: 1.5rem;
+        color: var(--muted);
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .business-title {
+        margin-bottom: 1.2rem;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+        text-transform: lowercase;
+      }
+
+      .business-summary {
+        margin-bottom: 2.25rem;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+      }
+
+      .business-highlight {
+        margin-bottom: 2rem;
+        padding: 1.25rem 1.3rem;
+        border: 1px solid var(--notes-divider);
+        border-radius: 22px;
+        background: color-mix(in srgb, var(--notes-search) 78%, transparent);
+      }
+
+      .business-highlight-label {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .business-highlight-text {
+        margin-top: 0.6rem;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .business-section {
+        padding: 1.45rem 0;
+        border-top: 1px solid var(--notes-divider);
+      }
+
+      .business-section:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .business-section-title {
+        font-size: clamp(1.45rem, 2.3vw, 2rem);
+        line-height: 1.08;
+      }
+
+      .business-section-copy {
+        display: grid;
+        gap: 0.95rem;
+        margin-top: 1rem;
+      }
+
+      .business-section-copy p {
+        color: var(--fg);
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .business-videos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 340px));
+        gap: 0.9rem;
+        margin-top: 1.25rem;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .business-video {
+        overflow: hidden;
+        border: 1px solid var(--notes-divider);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--notes-search) 78%, transparent);
+      }
+
+      .business-video iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        border: 0;
+        background: #000;
+      }
+
+      .business-signoff {
+        margin-top: 2rem;
+        padding-top: 1.35rem;
+        border-top: 1px solid var(--notes-divider);
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .business-signoff a {
+        color: var(--accent);
+      }
+
+      @media (max-width: 767px) {
+        .business-page {
+          padding: 0;
+        }
+
+        .business-shell {
+          min-height: 100vh;
+          border-radius: 0;
+          border: 0;
+          box-shadow: none;
+        }
+
+        .business-topbar {
+          padding: 1rem 1rem 0;
+        }
+
+        .business-reader {
+          min-height: 100vh;
+          padding: 1rem 1rem 2rem;
+        }
+
+        .business-reader-date {
+          text-align: left;
+          margin-bottom: 1rem;
+        }
+
+        .business-videos {
+          grid-template-columns: 1fr;
+          width: min(100%, 340px);
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="business-page">
+      <div class="business-shell">
+        <div class="business-topbar">
+          <div class="business-traffic">
+            <a href="/" aria-label="Close and go home"></a>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <article class="business-reader">
+          <div class="business-reader-inner">
+            <p class="business-reader-date">{noteUpdated}</p>
+            <h1 class="business-title">business</h1>
+            <p class="business-summary">
+              Casestody x Greysole
+            </p>
+
+            <section class="business-highlight">
+              <p class="business-highlight-label">Business</p>
+              <p class="business-highlight-text">
+                Two brands, two starting points, and one shared approach: build from real everyday
+                needs and let growth happen naturally.
+              </p>
+            </section>
+
+            <section class="business-section">
+              <h2 class="business-section-title">Casestody x Greysole</h2>
+              <div class="business-section-copy">
+                <p>
+                  Casestody x Greysole
+                </p>
+              </div>
+            </section>
+
+            <section class="business-section">
+              <h2 class="business-section-title">Casestody</h2>
+              <div class="business-section-copy">
+                <p>
+                  Casestody started pretty simply. While we were in school, we were just trying to
+                  make some extra money and noticed something obvious. Everyone had a phone, and
+                  everyone needed a case. Not just once, but over time.
+                </p>
+                <p>
+                  That gap was enough to start.
+                </p>
+                <p>
+                  We began with phone cases and slowly added accessories as the brand grew. We’re
+                  still expanding the catalog, mostly based on what people actually need and use
+                  day to day. The focus has always been on balance. Good design, solid protection,
+                  and options that let people choose what works for them.
+                </p>
+                <p>
+                  Casestody isn’t for one type of person or device. It’s open to everyone. Whether
+                  you want something clean, bold, or just reliable, the idea is simple: products
+                  that make sense for everyday use.
+                </p>
+              </div>
+            </section>
+
+            <section class="business-section">
+              <h2 class="business-section-title">Greysole</h2>
+              <div class="business-section-copy">
+                <p>
+                  Greysole is about comfort. That’s really it.
+                </p>
+                <p>
+                  There wasn’t a big story behind it besides the fact that one of its co-founders
+                  was obsessed with socks. Comfort just feels good. It brings ease, calm, and
+                  freedom, and that’s what the brand is built around.
+                </p>
+                <p>
+                  We make everyday pieces that fit into different parts of life; home, outside,
+                  work, rest. Everything is designed to feel easy, familiar, and good to wear,
+                  without trying too hard. Comfort comes first, but we keep things simple and
+                  expressive.
+                </p>
+                <p>
+                  As Greysole grows, it’s meant to grow naturally, into more categories, more
+                  essentials while staying true to the same feeling it started with.
+                </p>
+              </div>
+            </section>
+
+            <section class="business-section">
+              <div class="business-section-copy">
+                <p>
+              
+                </p>
+              </div>
+
+              <div class="business-videos">
+                {businessVideos.map((video) => (
+                  <div class="business-video">
+                    <iframe
+                      src={getYoutubeEmbedUrl(video.youtubeUrl)}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <footer class="business-signoff">
+            </footer>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
