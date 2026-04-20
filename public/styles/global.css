@@ -658,8 +658,22 @@ a {
     padding-top: 5.5rem;
   }
 
+  .hero {
+    text-align: right;
+  }
+
   .hero-name {
     font-size: 1.75rem;
+    justify-content: flex-end;
+  }
+
+  .hero-bio,
+  .hero-current {
+    margin-left: auto;
+  }
+
+  .cta-group {
+    justify-content: flex-end;
   }
 
   .notes-app {

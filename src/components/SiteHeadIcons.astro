@@ -1,0 +1,12 @@
+---
+const { appTitle = "Glinder" } = Astro.props;
+const iconVersion = "20260420";
+---
+
+<link rel="icon" type="image/png" href={`/favicon.png?v=${iconVersion}`} />
+<link rel="apple-touch-icon" sizes="180x180" href={`/apple-touch-icon.png?v=${iconVersion}`} />
+<link rel="manifest" href={`/site.webmanifest?v=${iconVersion}`} />
+<meta name="theme-color" content="#000000" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content={appTitle} />
