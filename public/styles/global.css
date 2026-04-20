@@ -687,8 +687,18 @@ a {
   }
 
   .feature-card-body {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .feature-card-title {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .feature-card-cta {
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
   .work-row {

@@ -52,7 +52,7 @@ const sidebarNotes = [
 const articleSections = [
   { paragraphs: [
       {
-        html: `It’s a new year, and while I didn’t plan to start it this way, I guess I’m starting it off on a very petty note. My dear friend Marian recently posted a <a href="https://mariangasinu.com/Blog/" target="_blank" rel="noreferrer">blog</a> that, on the surface, was impressive—uplifting, even. But as I read through it, I couldn’t help but feel it was a subtle jab at me—a response to something I’d shared with her about my plans for 2025.`,
+        html: `It’s a new year, and while I didn’t plan to start it this way, I guess I’m starting it off on a very petty note. My dear friend Marian recently posted a <a class="highlighted-blog-link" href="https://mariangasinu.com/Blog/" target="_blank" rel="noreferrer">blog</a> that, on the surface, was impressive—uplifting, even. But as I read through it, I couldn’t help but feel it was a subtle jab at me—a response to something I’d shared with her about my plans for 2025.`,
       },
       "Here’s an excerpt from her post:"
     ],
@@ -356,6 +356,20 @@ const articleSections = [
         color: var(--fg);
         font-size: 1.16rem;
         line-height: 1.85;
+      }
+
+      .notes-section-copy :global(.highlighted-blog-link) {
+        color: var(--fg);
+        font-weight: 700;
+        text-decoration-line: underline;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.12em;
+        transition: opacity 0.15s ease;
+      }
+
+      .notes-section-copy :global(.highlighted-blog-link:hover),
+      .notes-section-copy :global(.highlighted-blog-link:focus-visible) {
+        opacity: 0.8;
       }
 
       .notes-signoff {
