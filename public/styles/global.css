@@ -670,6 +670,7 @@ a {
   .hero-bio,
   .hero-current {
     margin-left: auto;
+    text-align: left;
   }
 
   .cta-group {
