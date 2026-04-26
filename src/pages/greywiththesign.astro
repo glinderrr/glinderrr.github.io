@@ -3,7 +3,12 @@ import SiteHeadIcons from "../components/SiteHeadIcons.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 
 const signImages = [
-  { src: "/images/featured/IMG_2353.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/soft life.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/ebe easy.jpeg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/How far.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/Talk is Cheap.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/Party.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/Adulting.jpg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/IMG_3883-scaled.jpg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/IMG_5993.jpg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/IMG_2797-scaled.jpeg", alt: "Greywiththesign gallery image." },
@@ -145,14 +150,26 @@ const signImages = [
         gap: 1.35rem;
       }
 
-      .sign-handle {
+      .sign-identity {
+        color: var(--fg);
+      }
+
+      .sign-handle,
+      .sign-tagline {
+        display: inline;
+        margin: 0;
         color: var(--fg);
         font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.2rem);
         font-weight: 700;
         line-height: 1.5;
       }
 
+      .sign-handle::after {
+        content: " - ";
+      }
+
       .sign-summary {
+        margin: 0;
         color: var(--muted);
         font-size: clamp(1rem, 0.9rem + 0.45vw, 1.35rem);
         font-weight: 600;
@@ -207,21 +224,49 @@ const signImages = [
         }
 
         .sign-header {
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
+          grid-template-columns: clamp(96px, 30vw, 120px) minmax(0, 1fr);
+          gap: 1rem;
+          align-items: center;
           margin-bottom: 2rem;
         }
 
         .sign-avatar {
-          width: min(180px, 52vw);
-          height: min(180px, 52vw);
+          width: clamp(96px, 30vw, 120px);
+          height: clamp(96px, 30vw, 120px);
         }
 
         .sign-copy {
-          gap: 1rem;
+          display: contents;
+        }
+
+        .sign-identity {
+          display: grid;
+          gap: 0.25rem;
+          align-content: center;
+          align-self: center;
+        }
+
+        .sign-handle {
+          display: block;
+          font-size: 1.05rem;
+          line-height: 1.2;
+        }
+
+        .sign-handle::after {
+          content: none;
+        }
+
+        .sign-tagline {
+          display: block;
+          color: var(--muted);
+          font-size: 0.94rem;
+          line-height: 1.35;
+          font-weight: 600;
         }
 
         .sign-summary {
+          grid-column: 1 / -1;
+          margin-top: 0.2rem;
           font-size: 1rem;
           line-height: 1.65;
         }
@@ -268,9 +313,11 @@ const signImages = [
               </div>
 
               <div class="sign-copy">
-                <p class="sign-handle">
-                  @greywiththesign - Not all heroes wear capes, some just hold signs
-                </p>
+                <div class="sign-identity">
+                  <p class="sign-handle">@greywiththesign</p>
+                  <p class="sign-tagline">Not all heroes wear capes, some just hold signs</p>
+                </div>
+
                 <p class="sign-summary">
                   It’s just me, a sign, and the undeniable urge to state the obvious. Whether it’s
                   everyday struggles, things I find funny, or just random thoughts that pop into my

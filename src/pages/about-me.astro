@@ -2,14 +2,8 @@
 import SiteHeadIcons from "../components/SiteHeadIcons.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 
-const aboutParagraphs = [
-  "I'm a creative builder based in Ghana. I co-own Casestody and Greysole, and I spend a lot of time thinking about how things look, feel, and function.",
-  "I'm really big on aesthetics, comfortable clothing and spaces. Sometimes that looks like just following an idea until it becomes real. I'm a youtuber sometimes.",
-  "Outside of work, I'm into books, weird music, fast cars & bikes, Fortnite, and figuring out how to romanticize my life a little more.",
-];
-
 const interests = [
-  "Entrepreneurship",
+  "Business",
   "Design",
   "Web",
   "Content",
@@ -19,6 +13,7 @@ const interests = [
   "YouTube",
   "Fortnite",
   "Fast Cars",
+  "Bikes",
   "Kanye West",
 ];
 
@@ -228,6 +223,18 @@ const tunes = [
         font-size: 1rem;
         line-height: 1.8;
         color: var(--muted);
+      }
+
+      .about-inline-link {
+        color: #dc2626;
+        font-weight: 600;
+      }
+
+      .about-inline-link:hover,
+      .about-inline-link:focus-visible {
+        color: #b91c1c;
+        text-decoration: underline;
+        text-underline-offset: 0.14em;
       }
 
       .manifesto-card {
@@ -512,8 +519,8 @@ const tunes = [
         }
 
         .hero-media {
-          margin-left: auto;
-          margin-right: 0;
+          margin-left: 0;
+          margin-right: auto;
         }
 
         .hero-copy {
@@ -620,9 +627,27 @@ const tunes = [
           </h1>
 
           <div class="copy-stack">
-            {aboutParagraphs.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))}
+            <p>
+              I'm a creative builder based in Ghana. I co-own Casestody and Greysole, and I spend
+              a lot of time thinking about how things look, feel, and function.
+            </p>
+            <p>
+              I'm really big on aesthetics, comfortable clothing and spaces. Sometimes that looks
+              like just following an idea until it becomes real. I'm also a{" "}
+              <a
+                class="about-inline-link"
+                href="http://www.youtube.com/@Justgreyish"
+                target="_blank"
+                rel="noreferrer"
+              >
+                youtuber
+              </a>{" "}
+              on some days.
+            </p>
+            <p>
+              Outside of work, I'm into books, weird music, fast cars & bikes, Fortnite, and
+              figuring out how to romanticize my life a little more.
+            </p>
           </div>
         </div>
       </section>
