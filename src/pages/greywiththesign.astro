@@ -309,7 +309,13 @@ const signImages = [
           <div class="sign-reader-inner">
             <section class="sign-header" aria-label="Greywiththesign introduction">
               <div class="sign-avatar">
-                <img src="/images/featured/sssssssssss.jpg" alt="Greywiththesign profile image." />
+                <img
+                  src="/images/featured/sssssssssss.jpg"
+                  alt="Greywiththesign profile image."
+                  decoding="async"
+                  width="480"
+                  height="480"
+                />
               </div>
 
               <div class="sign-copy">
@@ -330,7 +336,7 @@ const signImages = [
             <section class="sign-gallery" aria-label="Greywiththesign gallery">
               {signImages.map((image) => (
                 <figure class="sign-card">
-                  <img src={image.src} alt={image.alt} loading="lazy" />
+                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
                 </figure>
               ))}
             </section>

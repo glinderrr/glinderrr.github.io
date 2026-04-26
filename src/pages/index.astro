@@ -151,6 +151,8 @@ const featureCards = [
                   width="1024"
                   height="1024"
                   loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
                 />
                 <PandaEyeOverlay />
               </div>
@@ -213,7 +215,13 @@ const featureCards = [
           <section class="feature-cards" aria-label="Featured visuals">
             {featureCards.map((card) => (
               <article class="feature-card">
-                <img class="feature-card-art" src={card.imageSrc} alt={card.imageAlt} loading="lazy" />
+                <img
+                  class="feature-card-art"
+                  src={card.imageSrc}
+                  alt={card.imageAlt}
+                  loading="lazy"
+                  decoding="async"
+                />
 
                 <div class="feature-card-body">
                   <h3 class="feature-card-title">{card.title}</h3>

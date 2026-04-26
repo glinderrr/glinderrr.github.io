@@ -261,7 +261,7 @@ const studioIllustrations = [
               <section class="studio-gallery" aria-label="Studio illustration gallery">
                 {studioIllustrations.map((piece) => (
                   <figure class="studio-card">
-                    <img src={piece.src} alt={piece.alt} loading="lazy" />
+                    <img src={piece.src} alt={piece.alt} loading="lazy" decoding="async" />
                   </figure>
                 ))}
               </section>

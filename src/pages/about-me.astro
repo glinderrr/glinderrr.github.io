@@ -82,6 +82,7 @@ const tunes = [
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://is1-ssl.mzstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
@@ -616,6 +617,10 @@ const tunes = [
             src="/images/featured/About me.jpg"
             alt="Portrait of Glinder"
             loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            width="640"
+            height="762"
           />
         </div>
 
@@ -696,7 +701,12 @@ const tunes = [
               <div class="tune-flip">
                 <div class="tune-sleeve">
                   <div class="tune-cover">
-                    <img src={tune.coverSrc} alt={`${tune.title} album cover by ${tune.artist}`} loading="lazy" />
+                    <img
+                      src={tune.coverSrc}
+                      alt={`${tune.title} album cover by ${tune.artist}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                 </div>
                 <div class="tune-back" aria-hidden="true">
