@@ -600,7 +600,7 @@ import SiteFooter from "../components/SiteFooter.astro";
       }
 
       #gs-wrap.dark-mode {
-        --bg: #101010;
+        --bg: #000000;
         --text: #ffffff;
         --muted: #b0b0b0;
         --line: #404040;
@@ -1224,7 +1224,7 @@ import SiteFooter from "../components/SiteFooter.astro";
             wrap.classList.toggle("dark-mode", isDark);
 
             var lightBg = getComputedStyle(wrap).getPropertyValue("--bg").trim() || "#FDFFF4";
-            wrap.style.background = isDark ? "#101010" : lightBg;
+            wrap.style.background = isDark ? "#000000" : lightBg;
           } catch (e) {
             // Ignore theme detection errors and keep polling.
           }

@@ -28,13 +28,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #323232;
-    --fg: #e8d8c9;
-    --muted: rgba(232, 216, 201, 0.72);
-    --border: rgba(232, 216, 201, 0.14);
-    --accent: #e8d8c9;
-    --btn-bg: #3a3a3a;
-    --btn-hover: #434343;
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: rgba(255, 255, 255, 0.72);
+    --border: rgba(255, 255, 255, 0.14);
+    --accent: #ffffff;
+    --btn-bg: #111111;
+    --btn-hover: #1a1a1a;
     --badge-blue-bg: #1e3a5f;
     --badge-blue-txt: #93c5fd;
     --badge-green-bg: #14532d;
@@ -44,14 +44,14 @@
     --badge-purple-bg: #3b0764;
     --badge-purple-txt: #d8b4fe;
     --robot-glow: rgba(96, 165, 250, 0.26);
-    --notes-surface: #3a3a3a;
-    --notes-surface-soft: #434343;
-    --notes-divider: rgba(232, 216, 201, 0.1);
-    --notes-text: #e8d8c9;
-    --notes-muted: rgba(232, 216, 201, 0.68);
+    --notes-surface: #080808;
+    --notes-surface-soft: #111111;
+    --notes-divider: rgba(255, 255, 255, 0.1);
+    --notes-text: #ffffff;
+    --notes-muted: rgba(255, 255, 255, 0.68);
     --notes-accent: #ffd54a;
-    --work-line: rgba(232, 216, 201, 0.18);
-    --work-dot: rgba(232, 216, 201, 0.18);
+    --work-line: rgba(255, 255, 255, 0.18);
+    --work-dot: rgba(255, 255, 255, 0.18);
   }
 }
 
