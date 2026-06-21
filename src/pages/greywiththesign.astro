@@ -3,24 +3,57 @@ import SiteHeadIcons from "../components/SiteHeadIcons.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 
 const newSignImages = [
-  { src: "/images/featured/MCBH.jpg", alt: "Greywiththesign MCBH gallery image." },
-  { src: "/images/featured/Eew.jpg", alt: "Greywiththesign Eew gallery image." },
+  {
+    src: "/images/featured/MCBH.jpg",
+    optimizedSrc: "/images/featured/grey-mcbh-900.webp",
+    alt: "Greywiththesign MCBH gallery image.",
+  },
+  {
+    src: "/images/featured/Eew.jpg",
+    optimizedSrc: "/images/featured/grey-eew.webp",
+    alt: "Greywiththesign Eew gallery image.",
+  },
 ];
 
 const slideImages = [
-  { src: "/images/featured/Slide I.jpg", alt: "Greywiththesign Slide I gallery image." },
-  { src: "/images/featured/Slide II.jpg", alt: "Greywiththesign Slide II gallery image." },
+  {
+    src: "/images/featured/Slide I.jpg",
+    optimizedSrc: "/images/featured/grey-slide-i.webp",
+    alt: "Greywiththesign Slide I gallery image.",
+  },
+  {
+    src: "/images/featured/Slide II.jpg",
+    optimizedSrc: "/images/featured/grey-slide-ii.webp",
+    alt: "Greywiththesign Slide II gallery image.",
+  },
 ];
 
 const remainingTopSignImages = [
-  { src: "/images/featured/Allegations.jpg", alt: "Greywiththesign Allegations gallery image." },
+  {
+    src: "/images/featured/Allegations.jpg",
+    optimizedSrc: "/images/featured/grey-allegations.webp",
+    alt: "Greywiththesign Allegations gallery image.",
+  },
   {
     src: "/images/featured/Ballot or Religion.jpg",
+    optimizedSrc: "/images/featured/grey-ballot-or-religion.webp",
     alt: "Greywiththesign Ballot or Religion gallery image.",
   },
-  { src: "/images/featured/Glasses.jpg", alt: "Greywiththesign Glasses gallery image." },
-  { src: "/images/featured/Sea Views.jpg", alt: "Greywiththesign Sea Views gallery image." },
-  { src: "/images/featured/Trotro.jpg", alt: "Greywiththesign Trotro gallery image." },
+  {
+    src: "/images/featured/Glasses.jpg",
+    optimizedSrc: "/images/featured/grey-glasses.webp",
+    alt: "Greywiththesign Glasses gallery image.",
+  },
+  {
+    src: "/images/featured/Sea Views.jpg",
+    optimizedSrc: "/images/featured/grey-sea-views.webp",
+    alt: "Greywiththesign Sea Views gallery image.",
+  },
+  {
+    src: "/images/featured/Trotro.jpg",
+    optimizedSrc: "/images/featured/grey-trotro.webp",
+    alt: "Greywiththesign Trotro gallery image.",
+  },
   { src: "/images/featured/soft life.jpg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/ebe easy.jpeg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/How far.jpg", alt: "Greywiththesign gallery image." },
@@ -28,8 +61,16 @@ const remainingTopSignImages = [
 
 const signImages = [
   { src: "/images/featured/Talk is Cheap.jpg", alt: "Greywiththesign gallery image." },
-  { src: "/images/featured/ECG.jpg", alt: "Greywiththesign gallery image." },
-  { src: "/images/featured/Voice Notes.jpg", alt: "Greywiththesign gallery image." },
+  {
+    src: "/images/featured/ECG.jpg",
+    optimizedSrc: "/images/featured/grey-ecg.webp",
+    alt: "Greywiththesign gallery image.",
+  },
+  {
+    src: "/images/featured/Voice Notes.jpg",
+    optimizedSrc: "/images/featured/grey-voice-notes.webp",
+    alt: "Greywiththesign gallery image.",
+  },
   { src: "/images/featured/Party.jpg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/Adulting.jpg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/IMG_3883-scaled.jpg", alt: "Greywiththesign gallery image." },
@@ -65,6 +106,13 @@ const signImages = [
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     />
     <SiteHeadIcons />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/featured/grey-mcbh-900.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
     <link rel="stylesheet" href="/styles/global.css" />
     <style>
       :root {
@@ -166,6 +214,16 @@ const signImages = [
         height: 100%;
         object-fit: cover;
         object-position: center center;
+      }
+
+      .sign-avatar picture,
+      .sign-card picture {
+        display: block;
+      }
+
+      .sign-avatar picture {
+        width: 100%;
+        height: 100%;
       }
 
       .sign-copy {
@@ -400,23 +458,40 @@ const signImages = [
             </section>
 
             <section class="sign-new-gallery" aria-label="Latest Greywiththesign gallery images">
-              {newSignImages.map((image) => (
+              {newSignImages.map((image, index) => (
                 <figure class="sign-card">
-                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  <picture>
+                    <source srcset={image.optimizedSrc} type="image/webp" />
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      decoding={index === 0 ? "sync" : "async"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      width="900"
+                      height="1200"
+                    />
+                  </picture>
                 </figure>
               ))}
 
               <div class="sign-slide-pair">
                 {slideImages.map((image) => (
                   <figure class="sign-card">
-                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                    <picture>
+                      <source srcset={image.optimizedSrc} type="image/webp" />
+                      <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                    </picture>
                   </figure>
                 ))}
               </div>
 
               {remainingTopSignImages.map((image) => (
                 <figure class="sign-card">
-                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  <picture>
+                    {image.optimizedSrc && <source srcset={image.optimizedSrc} type="image/webp" />}
+                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  </picture>
                 </figure>
               ))}
             </section>
@@ -424,7 +499,10 @@ const signImages = [
             <section class="sign-gallery" aria-label="Greywiththesign gallery archive">
               {signImages.map((image) => (
                 <figure class="sign-card">
-                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  <picture>
+                    {image.optimizedSrc && <source srcset={image.optimizedSrc} type="image/webp" />}
+                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                  </picture>
                 </figure>
               ))}
             </section>
