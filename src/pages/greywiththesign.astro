@@ -3,6 +3,10 @@ import SiteHeadIcons from "../components/SiteHeadIcons.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 
 const newSignImages = [
+  { src: "/images/featured/Tiramisu.jpg", alt: "Greywiththesign Tiramisu gallery image." },
+  { src: "/images/featured/Asem.jpg", alt: "Greywiththesign Asem gallery image." },
+  { src: "/images/featured/Netflix Documentary.jpg", alt: "Greywiththesign Netflix Documentary gallery image." },
+  { src: "/images/featured/Wakyi gu hor.jpg", alt: "Greywiththesign Wakyi gu hor gallery image." },
   {
     src: "/images/featured/AI Flyers.jpg",
     optimizedSrc: "/images/featured/grey-ai-flyers.webp",
@@ -126,6 +130,27 @@ const signImages = [
   { src: "/images/featured/IMG_6316.jpeg", alt: "Greywiththesign gallery image." },
   { src: "/images/featured/IMG_6287.jpeg", alt: "Greywiththesign gallery image." },
 ];
+
+// Additional uploaded images from the `public/images/featured` folder
+// (adds several `.avif` optimized assets and other opt- prefixed variants)
+signImages.push(
+  { src: "/images/featured/gws.jpg", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-allegations.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-ballot-or-religion.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-glasses.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-mcbh.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-sea-views.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-slide-i.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-slide-ii.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/gws-trotro.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-ali.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-bar.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-beach.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-box.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-chair.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-ecg.avif", alt: "Greywiththesign gallery image." },
+  { src: "/images/featured/opt-voice-notes.avif", alt: "Greywiththesign gallery image." }
+);
 
 const initialImageCount = 16;
 const topSignImages = [...newSignImages, ...slideImages, ...remainingTopSignImages];
