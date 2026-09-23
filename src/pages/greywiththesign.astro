@@ -3,6 +3,12 @@ import SiteHeadIcons from "../components/SiteHeadIcons.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 
 const newSignImages = [
+  { src: "/images/featured/Wyd.png", alt: "Greywiththesign Wyd gallery image." },
+  {
+    src: "/images/featured/Urgent Money.JPG",
+    alt: "Greywiththesign Urgent Money gallery image.",
+  },
+  { src: "/images/featured/CD guy.png", alt: "Greywiththesign CD guy gallery image." },
   { src: "/images/featured/Tiramisu.jpg", alt: "Greywiththesign Tiramisu gallery image." },
   { src: "/images/featured/Asem.jpg", alt: "Greywiththesign Asem gallery image." },
   { src: "/images/featured/Netflix Documentary.jpg", alt: "Greywiththesign Netflix Documentary gallery image." },
@@ -467,6 +473,7 @@ const loadMoreImageCount = 16;
         }
 
         .sign-gallery {
+          --sign-column-count: 2;
           --sign-gallery-gap: 0.85rem;
         }
 
